@@ -23,3 +23,12 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+// Events routes...
+Route::get('events', 'EventsController@index');
+Route::get('events/create', 'EventsController@create');
+Route::post('events/create', 'EventsController@store');
+Route::get('events/show/{id}', 'EventsController@show');
+Route::get('events/edit/{id}', 'EventsController@edit');
+Route::post('events/edit/{id}', 'EventsController@update');
+Route::post('events/delete/{id}', 'EventsController@delete');
