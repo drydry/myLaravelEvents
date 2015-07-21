@@ -29,7 +29,13 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <a class="btn btn-primary" href="<?php echo url('events/show', $parameters = ['id' => $event->id], $secure = null); ?>">View details</a>                            
+                                <a class="btn btn-primary" href="<?php echo url('events/show', $parameters = ['id' => $event->id], $secure = null); ?>">View details</a>
+                                <?php if($event->host != Auth::id()) : ?>
+                                <form class="form-horizontal" role="form" method="POST" action="/events/book/{{ $event->id }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-success">Book!</button>
+                                </form>                            
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
