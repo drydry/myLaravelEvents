@@ -96,7 +96,25 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id)->first();
+
+        // Event validation
+        $this->validate($request, [
+            'title' => 'required|min:1|max:255',
+            'start_time' => 'required|date|after:tomorrow',
+            'end_time' => 'required|date|after:start_time',
+        ]);
+
+        // Populates the event
+        $event->start_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('start_time'))));
+        $event->end_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('end_time'))));
+        $event->title = $request->input('title');
+
+        // Saves it
+        $event->save();
+
+        // Return all events view from controller
+        return redirect()->action('EventsController@index');
     }
 
     /**
@@ -107,7 +125,11 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Event validation
+        $event = Event::find($id);
+        $event->delete();
+
+        return redirect()->action('EventsController@hosted');
     }
 
     /**

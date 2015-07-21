@@ -38,5 +38,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('events/show/{id}', 'EventsController@show');
 	Route::get('events/edit/{id}', 'EventsController@edit');
 	Route::post('events/edit/{id}', 'EventsController@update');
-	Route::post('events/delete/{id}', 'EventsController@delete');
+	Route::post('events/delete/{id}', 'EventsController@destroy');
 });
