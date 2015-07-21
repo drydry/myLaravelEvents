@@ -32,9 +32,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Start time</label>
                             <div class="col-md-6">
-                                <!--<input type="text" class="form-control" name="start_time" value="{{ old('start_time') }}">-->
-                                <div class='input-group date' id='start_time'>
-				                    <input type='text' class="form-control" />
+                                <div class='input-group date' id='start_time_group'>
+				                    <input type='text' class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}"/>
 				                    <span class="input-group-addon">
 				                        <span class="glyphicon glyphicon-calendar"></span>
 				                    </span>
@@ -42,32 +41,15 @@
                             </div>
 
                         </div>
-                        <!--
-                        <div class="container">
-						    <div class="row">
-						        <div class='col-sm-6'>
-						            <div class="form-group">
-						                <div class='input-group date' id='datetimepicker1'>
-						                    <input type='text' class="form-control" />
-						                    <span class="input-group-addon">
-						                        <span class="glyphicon glyphicon-calendar"></span>
-						                    </span>
-						                </div>
-						            </div>
-						        </div>
-						        <script type="text/javascript">
-						            $(function () {
-						                $('#datetimepicker1').datetimepicker();
-						            });
-						        </script>
-						    </div>
-						</div>
-						-->
-						 
                         <div class="form-group">
                             <label class="col-md-4 control-label">End time</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="end_time" value="{{ old('end_time') }}">
+                                <div class='input-group date' id='end_time_group'>
+				                    <input type='text' class="form-control" id="end_time" name="end_time" value="{{ old('end_time') }}" />
+				                    <span class="input-group-addon">
+				                        <span class="glyphicon glyphicon-calendar"></span>
+				                    </span>
+				                </div>
                             </div>
                         </div>                     
  
@@ -87,7 +69,15 @@
 @section('view.scripts')
 <script type="text/javascript">                            	
     $(function () {
-        $('#start_time').datetimepicker();
+        $('#start_time_group').datetimepicker();
+        $('#end_time_group').datetimepicker();
+        // Linked pickers
+        $("#start_time_group").on("dp.change", function (e) {
+            $('#end_time_group').data("DateTimePicker").minDate(e.date);
+        });
+        $("#end_time_group").on("dp.change", function (e) {
+            $('#start_time_group').data("DateTimePicker").maxDate(e.date);
+        });
     });
 </script>
 @endsection 

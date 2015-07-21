@@ -8,6 +8,7 @@
  
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
  
     <!-- Fonts -->
@@ -63,11 +64,11 @@
     </div>
  
     <!-- Scripts -->
-    <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/moment.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/js/moment/moment.js"></script>
     <script type="text/javascript" src="/js/transition.js"></script>
     <script type="text/javascript" src="/js/collapse.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
      @yield('view.scripts')
 </body>

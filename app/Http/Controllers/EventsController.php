@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 use App\Event;
 
@@ -41,17 +42,23 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
+        // Event validation
         $this->validate($request, [
             'title' => 'required|min:1|max:255',
-            'start_time' => 'required|date|after:now',
-            'end_time' => 'required|date|after:start_date',
+            'start_time' => 'required|date|after:tomorrow',
+            'end_time' => 'required|date|after:start_time',
         ]);
 
+        // Populates the event
         $event = new Event;
-        $event->fill(Request::all());
+        $event->start_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('start_time'))));
+        $event->end_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('end_time'))));
+        $event->title = $request->input('title');
         $event->host = Auth::id();
+        // Saves it
         $event->save();
-        return Redirect::to('events');
+
+        return redirect()->action('EventsController@index');
     }
 
     /**
