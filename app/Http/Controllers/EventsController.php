@@ -118,6 +118,7 @@ class EventsController extends Controller
     public function hosted()
     {
         $events = Event::myEvents()->get();
+        
         return view('events.index', ['events' => $events]);
     }
 
