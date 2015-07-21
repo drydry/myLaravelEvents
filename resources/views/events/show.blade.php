@@ -35,9 +35,9 @@
                         </div>
 
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Capacity</label>
+                            <label class="col-md-4 control-label">Occupancy</label>
                             <div class="col-md-6">
-                                {{ $event->capacity }}
+                                {{ count($event->bookings) }} / {{ $event->capacity == 0 ? 'unlimited': $event->capacity }}
                             </div>
                         </div>
 

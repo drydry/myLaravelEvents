@@ -45,6 +45,11 @@ class Event extends Model {
         return $this->belongsTo('App\User', 'host');
     }
 
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking', 'event', 'id');
+    }
+
     /**
      * Scope a query to only include events that belong to the current user.
      *
