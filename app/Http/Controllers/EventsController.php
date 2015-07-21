@@ -55,6 +55,8 @@ class EventsController extends Controller
         $event->end_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('end_time'))));
         $event->title = $request->input('title');
         $event->host = Auth::id();
+
+        dd($event->creator->email);
         // Saves it
         $event->save();
 

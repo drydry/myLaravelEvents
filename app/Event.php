@@ -36,9 +36,9 @@ class Event extends Model {
 	protected $guarded = array('id');
 
 	/** Relationships **/
-	public function host()
+	public function creator()
     {
-        //return $this->belongsTo('MyTestApp\UserProfile');
+        return $this->belongsTo('App\User', 'host');
     }
 
 }
