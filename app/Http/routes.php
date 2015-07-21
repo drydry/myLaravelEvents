@@ -28,8 +28,11 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::group(['middleware' => 'auth'], function () {
     // Welcome route
     Route::get('/', 'EventsController@index');
+    
     // Events routes...
 	Route::get('events', 'EventsController@index');
+	Route::get('events/hosted', 'EventsController@hosted');
+
 	Route::get('events/create', 'EventsController@create');
 	Route::post('events/create', 'EventsController@store');
 	Route::get('events/show/{id}', 'EventsController@show');

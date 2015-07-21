@@ -52,4 +52,14 @@ class Event extends Model {
         return $query->where('host', Auth::id());
     }
 
+    /**
+     * Scope a query to only include events that don't belong to the current user.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOtherEvents($query)
+    {
+        return $query->where('host', '<>', Auth::id());
+    }
+
 }

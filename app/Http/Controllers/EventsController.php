@@ -110,4 +110,15 @@ class EventsController extends Controller
         //
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function hosted()
+    {
+        $events = Event::myEvents()->get();
+        return view('events.index', ['events' => $events]);
+    }
+
 }

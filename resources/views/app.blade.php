@@ -39,6 +39,7 @@
                     <li><a href="/">Home</a></li>
                     @if (!Auth::guest())
                     <li><a href="/events/create">Create event</a></li>
+                <li><a href="/events/hosted">My events</a></li>
                     @endif
                 </ul>
  
