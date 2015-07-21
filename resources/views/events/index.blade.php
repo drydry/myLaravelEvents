@@ -15,6 +15,11 @@
                     <div class="panel-heading text-center"><strong><?php echo $event->title ?></strong> - hosted by <?php echo $event->creator->full_name; ?></div>
                     <div class="panel-body">
                         <div class="form-group clearfix">
+                            <label class="col-md-4">Capacity</label>
+                            <div class="col-md-8"><?php echo $event->capacity ?></div>
+                        </div>
+                        
+                        <div class="form-group clearfix">
                             <label class="col-md-4">Start time</label>
                             <div class="col-md-8"><?php echo $event->start_time_friendly ?></div>
                         </div>
