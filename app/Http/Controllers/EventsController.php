@@ -30,7 +30,7 @@ class EventsController extends Controller
     public function create()
     {
         $event = new Event;
-        return view('events.create', ['event' => $event] );
+        return view('events.create', ['event' => $event]);
     }
 
     /**
@@ -41,10 +41,17 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|min:1|max:255',
+            'start_time' => 'required|date|after:now',
+            'end_time' => 'required|date|after:start_date',
+        ]);
+
         $event = new Event;
         $event->fill(Request::all());
+        $event->host = Auth::id();
         $event->save();
-        return redirect()->action('EventsController@index');
+        return Redirect::to('events');
     }
 
     /**
@@ -55,7 +62,8 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id)->first();
+        return view('events.show', ['event' => $event]);
     }
 
     /**
@@ -66,7 +74,8 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id)->first();
+        return view('events.edit', ['event' => $event]);
     }
 
     /**
@@ -91,4 +100,5 @@ class EventsController extends Controller
     {
         //
     }
+
 }

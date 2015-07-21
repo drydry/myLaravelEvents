@@ -22,7 +22,6 @@ class Event extends Model {
     * @var array
     */
     protected $fillable = [
-    	'host',
     	'title',
     	'start_time',
     	'end_time'

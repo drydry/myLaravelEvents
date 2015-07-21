@@ -60,7 +60,11 @@
     </div>
  
     <!-- Scripts -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/moment.js"></script>
+    <script type="text/javascript" src="/js/transition.js"></script>
+    <script type="text/javascript" src="/js/collapse.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
 </body>
 </html>
