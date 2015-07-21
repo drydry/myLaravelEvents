@@ -5,11 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
 
-// use soft delete;
-use SoftDeletes;
 
 class Booking extends Model
 {
+
+	// use soft delete;
+	use SoftDeletes;
+
     /**
     * The table associated with the model.
     *
