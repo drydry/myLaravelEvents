@@ -84,10 +84,11 @@
         </div>
     </div>
 </div>
+@section('view.scripts')
 <script type="text/javascript">                            	
     $(function () {
         $('#start_time').datetimepicker();
     });
 </script>
- 
+@endsection 
 @endsection

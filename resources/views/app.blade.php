@@ -69,5 +69,6 @@
     <script type="text/javascript" src="/js/collapse.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
+     @yield('view.scripts')
 </body>
 </html>
