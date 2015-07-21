@@ -32,11 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
     // Events routes...
 	Route::get('events', 'EventsController@index');
 	Route::get('events/hosted', 'EventsController@hosted');
-
 	Route::get('events/create', 'EventsController@create');
 	Route::post('events/create', 'EventsController@store');
 	Route::get('events/show/{id}', 'EventsController@show');
 	Route::get('events/edit/{id}', 'EventsController@edit');
 	Route::post('events/edit/{id}', 'EventsController@update');
 	Route::post('events/delete/{id}', 'EventsController@destroy');
+	// Booking
+	Route::post('events/book/{id}', 'BookingsController@store');
 });
