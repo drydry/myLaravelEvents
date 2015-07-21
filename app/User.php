@@ -37,7 +37,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     /**
      * Get the user's full name.
      *
-     * @param  string  $value
      * @return string
      */
     public function getFullNameAttribute()

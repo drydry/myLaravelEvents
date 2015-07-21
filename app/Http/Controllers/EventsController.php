@@ -20,7 +20,7 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('events.index', ['events' => $events]);
+        return view('events.index', ['events' => $events, 'title' => 'All events']);
     }
 
     /**
@@ -118,8 +118,8 @@ class EventsController extends Controller
     public function hosted()
     {
         $events = Event::myEvents()->get();
-        
-        return view('events.index', ['events' => $events]);
+
+        return view('events.index', ['events' => $events, 'title' => 'Hosted events']);
     }
 
 }

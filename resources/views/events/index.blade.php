@@ -6,7 +6,7 @@
     <div class="row">
 
         <div class="cold-md-12 text-center">
-            <h1>Events</h1>
+            <h1><?php echo $title; ?></h1>
         </div>
 
         <?php foreach ($events as $event) { ?>
@@ -16,11 +16,11 @@
                     <div class="panel-body">
                         <div class="form-group clearfix">
                             <label class="col-md-4">Start time</label>
-                            <div class="col-md-8"><?php echo $event->start_time ?></div>
+                            <div class="col-md-8"><?php echo $event->start_time_friendly ?></div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4">End time</label>
-                            <div class="col-md-8"><?php echo $event->end_time ?></div>
+                            <div class="col-md-8"><?php echo $event->end_time_friendly ?></div>
                         </div>
                     </div>
                 </div>

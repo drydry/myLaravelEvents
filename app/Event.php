@@ -4,6 +4,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
+use Carbon\Carbon;
 
 class Event extends Model {
 
@@ -60,6 +61,26 @@ class Event extends Model {
     public function scopeOtherEvents($query)
     {
         return $query->where('host', '<>', Auth::id());
+    }
+
+    /**
+     * Get the event start time (friendly version).
+     *
+     * @return string
+     */
+    public function getStartTimeFriendlyAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->start_time)->format('m/d H:i:s');
+    }
+
+    /**
+     * Get the event start time (friendly version).
+     *
+     * @return string
+     */
+    public function getEndTimeFriendlyAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->end_time)->format('m/d H:i:s');
     }
 
 }
