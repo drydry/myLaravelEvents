@@ -47,6 +47,8 @@ class EventsController extends Controller
             'title' => 'required|min:1|max:255',
             'start_time' => 'required|date|after:tomorrow',
             'end_time' => 'required|date|after:start_time',
+            'description' => 'max:255',
+            'capacity' => 'integer',
         ]);
 
         // Populates the event
@@ -54,6 +56,8 @@ class EventsController extends Controller
         $event->start_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('start_time'))));
         $event->end_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('end_time'))));
         $event->title = $request->input('title');
+        $event->description = $request->input('description');
+        $event->capacity = $request->input('capacity');
         $event->host = Auth::id();
 
         // Saves it
@@ -83,7 +87,7 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id)->first();
+        $event = Event::find($id);
         return view('events.edit', ['event' => $event]);
     }
 
@@ -96,19 +100,24 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $event = Event::find($id)->first();
+        $event = Event::find($id);
 
         // Event validation
         $this->validate($request, [
             'title' => 'required|min:1|max:255',
             'start_time' => 'required|date|after:tomorrow',
             'end_time' => 'required|date|after:start_time',
+            'description' => 'max:255',
+            'capacity' => 'integer',
         ]);
 
         // Populates the event
         $event->start_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('start_time'))));
         $event->end_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('end_time'))));
         $event->title = $request->input('title');
+        $event->description = $request->input('description');
+        $event->capacity = $request->input('capacity');
+        
 
         // Saves it
         $event->save();

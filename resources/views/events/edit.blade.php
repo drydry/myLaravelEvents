@@ -28,6 +28,20 @@
                                 <input type="text" class="form-control" name="title" value="{{ $event->title }}">
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Description</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" name="description">{{ $event->description }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Capacity</label>
+                            <div class="col-md-6">
+                                <input id="capacity" type="text" class="form-control" name="capacity" value="{{ $event->capacity }}">
+                            </div>
+                        </div>
  
                         <div class="form-group">
                             <label class="col-md-4 control-label">Start time</label>
@@ -82,6 +96,8 @@
         $("#end_time_group").on("dp.change", function (e) {
             $('#start_time_group').data("DateTimePicker").maxDate(e.date);
         });
+
+        $("#capacity").TouchSpin();
     });
 </script>
 @endsection 

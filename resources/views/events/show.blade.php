@@ -28,6 +28,20 @@
 	                    </div>
 
 	                    <div class="form-group clearfix">
+                            <label class="col-md-4 control-label">Description</label>
+                            <div class="col-md-6">
+                                {{ $event->description }}
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="col-md-4 control-label">Capacity</label>
+                            <div class="col-md-6">
+                                {{ $event->capacity }}
+                            </div>
+                        </div>
+
+	                    <div class="form-group clearfix">
 	                        <label class="col-md-4 control-label">Host</label>
 	                        <div class="col-md-8">
 	                        	<?php if($event->host == Auth::id()) { ?>

@@ -26,6 +26,8 @@ class Event extends Model {
     protected $fillable = [
     	'title',
     	'host',
+        'description',
+        'capacity',
     	'start_time',
     	'end_time'
     	];
