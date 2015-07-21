@@ -22,6 +22,11 @@
                             <label class="col-md-4">End time</label>
                             <div class="col-md-8"><?php echo $event->end_time_friendly ?></div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <a class="btn btn-primary" href="<?php echo url('events/show', $parameters = ['id' => $event->id], $secure = null); ?>">View details</a>                            
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
