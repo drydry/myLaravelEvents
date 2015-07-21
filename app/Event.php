@@ -3,6 +3,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Auth;
 
 class Event extends Model {
 
@@ -39,6 +40,16 @@ class Event extends Model {
 	public function creator()
     {
         return $this->belongsTo('App\User', 'host');
+    }
+
+    /**
+     * Scope a query to only include events that belong to the current user.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeMyEvents($query)
+    {
+        return $query->where('host', Auth::id());
     }
 
 }

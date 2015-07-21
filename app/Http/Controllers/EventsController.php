@@ -56,10 +56,10 @@ class EventsController extends Controller
         $event->title = $request->input('title');
         $event->host = Auth::id();
 
-        dd($event->creator->email);
         // Saves it
         $event->save();
 
+        // Return all events view from controller
         return redirect()->action('EventsController@index');
     }
 
