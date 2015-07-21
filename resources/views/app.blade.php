@@ -9,6 +9,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
  
     <!-- Fonts -->
@@ -71,6 +72,7 @@
     <script type="text/javascript" src="/js/collapse.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="/js/jquery.bootstrap-touchspin.min.js"></script>
      @yield('view.scripts')
 </body>
 </html>
