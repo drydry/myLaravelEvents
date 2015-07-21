@@ -36,6 +36,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
+                    @if (!Auth::guest())
+                    <li><a href="/events/create">Create event</a></li>
+                    @endif
                 </ul>
  
                 <ul class="nav navbar-nav navbar-right">
@@ -61,10 +64,10 @@
  
     <!-- Scripts -->
     <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/moment.js"></script>
     <script type="text/javascript" src="/js/transition.js"></script>
     <script type="text/javascript" src="/js/collapse.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
 </body>
 </html>
