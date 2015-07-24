@@ -65,9 +65,9 @@ angular.module('mainCtrl', [])
         $scope.loading = true;
         
         // use the function we created in our service
-        Event.show(id)
+        Event.book(id)
             .success(function(data){
-                // if successful, we display the event details
+                // if successful, we display all the events
                 Event.get()
                     .success(function(getData){
                         $scope.events = getData;
@@ -75,22 +75,4 @@ angular.module('mainCtrl', [])
                     });
             });
     }
-
-    // function to handle showing an event
-    // SHOW AN EVENT ====================================================
-    $scope.showEvent = function(id) {
-        $scope.loading = true;
-
-        // use the function we created in our service
-        Event.show(id)
-            .success(function(data){
-                // if successful, we display the event details
-                Event.get()
-                    .success(function(getData){
-                        $scope.events = getData;
-                        $scope.loading = false;
-                    });
-            });
-    }
-
 });

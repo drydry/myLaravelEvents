@@ -34,7 +34,7 @@ angular.module('eventService', [])
             return $http({
                 method: 'POST',
                 withCredentials: true,
-                url: '/api/events/book/' + eventData.id,
+                url: '/api/events/book/' + id,
                 headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
             });
         },
