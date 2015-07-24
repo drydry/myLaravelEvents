@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // Authentication routes...
@@ -26,18 +26,24 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 // Authenticated routes...
 Route::group(['middleware' => 'auth'], function () {
-    // Welcome route
-    Route::get('/', 'EventsController@index');
-    
-    // Events routes...
-	Route::get('events', 'EventsController@index');
-	Route::get('events/hosted', 'EventsController@hosted');
+
+	Route::get('/', function () {
+	    return view('events.index');
+	});
+
+	// Events routes...
 	Route::get('events/create', 'EventsController@create');
-	Route::post('events/create', 'EventsController@store');
 	Route::get('events/show/{id}', 'EventsController@show');
 	Route::get('events/edit/{id}', 'EventsController@edit');
-	Route::post('events/edit/{id}', 'EventsController@update');
-	Route::post('events/delete/{id}', 'EventsController@destroy');
-	// Booking
-	Route::post('events/book/{id}', 'BookingsController@store');
+	
+	// Specific routes for posting
+	Route::group(array('prefix' => 'api'), function(){
+		// Events
+		Route::get('events', 'EventsController@index');
+		Route::post('events/create', 'EventsController@store');
+		Route::post('events/edit/{id}', 'EventsController@update');
+		Route::post('events/delete/{id}', 'EventsController@destroy');
+		// Booking
+		Route::post('events/book/{id}', 'BookingsController@store');
+	});
 });

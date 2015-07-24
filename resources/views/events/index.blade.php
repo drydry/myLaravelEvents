@@ -2,47 +2,49 @@
  
 @section('content')
  
-<div class="container-fluid">
+<div class="container-fluid" ng-app="eventApp" ng-controller="mainController">
     <div class="row">
 
         <div class="cold-md-12 text-center">
-            <h1><?php echo $title; ?></h1>
+            <h1>All Events</h1>
         </div>
 
-        <?php foreach ($events as $event) { ?>
+        <div ng-hide="loading" ng-repeat="event in events">
+            <!-- Event panel -->
             <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><strong><?php echo $event->title ?></strong> - hosted by <?php echo $event->creator->full_name; ?></div>
+                    <div class="panel-heading text-center"><strong><% event.title %></strong> - hosted by <% event.creator.full_name %></div>
                     <div class="panel-body">
                         <div class="form-group clearfix">
+                            <!-- Occupancy -->
                             <label class="col-md-4">Occupancy</label>
-                            <div class="col-md-8">{{ count($event->bookings) }} / {{ $event->capacity == 0 ? 'unlimited': $event->capacity }}</div>
+                            <div class="col-md-8"><% event.bookings.length %> / <% event.capacity == 0 ? 'unlimited': event.capacity %></div>
                         </div>
-                        
+                        <!-- Start time -->
                         <div class="form-group clearfix">
                             <label class="col-md-4">Start time</label>
-                            <div class="col-md-8"><?php echo $event->start_time_friendly ?></div>
+                            <div class="col-md-8"><% event.start_time_friendly %></div>
                         </div>
+                        <!-- End time -->
                         <div class="form-group">
                             <label class="col-md-4">End time</label>
-                            <div class="col-md-8"><?php echo $event->end_time_friendly ?></div>
+                            <div class="col-md-8"><% event.end_time_friendly %></div>
                         </div>
+                        <!-- Buttons -->
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <a class="btn btn-primary" href="<?php echo url('events/show', $parameters = ['id' => $event->id], $secure = null); ?>">View details</a>
-                                <?php if($event->host != Auth::id()) : ?>
-                                <form class="form-horizontal" role="form" method="POST" action="/events/book/{{ $event->id }}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-success">Book!</button>
-                                </form>                            
-                                <?php endif; ?>
+                                <!-- Show event details -->
+                                <a class="btn btn-primary" href="/events/show/<% event.id %>">View details</a>
+                                <!-- Delete event -->
+                                <a class="btn btn-danger" href="#" ng-click="deleteEvent(event.id)" class="text-muted">Delete</a>
+                                <!-- Book event -->
+                                <a class="btn btn-success" href="#" ng-click="bookEvent(event.id)" class="text-muted">Book!</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
-        <?php } ?>
-
+        </div>
     </div>
 
 </div>
