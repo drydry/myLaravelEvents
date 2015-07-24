@@ -83,7 +83,7 @@
 @section('view.scripts')
 <script type="text/javascript">                            	
     $(function () {
-        $('#start_time_group').datetimepicker();
+        $('#start_time_group').datetimepicker(); 
         $('#end_time_group').datetimepicker();
         // Linked pickers
         $("#start_time_group").on("dp.change", function (e) {
