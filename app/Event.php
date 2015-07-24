@@ -39,6 +39,21 @@ class Event extends Model {
  	*/
 	protected $guarded = array('id');
 
+    // Append 
+    protected $appends = array('start_time_friendly', 'end_time_friendly');
+
+    // Return the start time in friendly format.
+    public function getStartTimeFriendlyAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->start_time)->format('m/d H:i:s');
+    }
+
+    // Return the end time in friendly format.
+    public function getEndTimeFriendlyAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->end_time)->format('m/d H:i:s');
+    }
+
 	/** Relationships **/
 	public function creator()
     {
@@ -69,25 +84,4 @@ class Event extends Model {
     {
         return $query->where('host', '<>', Auth::id());
     }
-
-    /**
-     * Get the event start time (friendly version).
-     *
-     * @return string
-     */
-    public function getStartTimeFriendlyAttribute()
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->start_time)->format('m/d H:i:s');
-    }
-
-    /**
-     * Get the event start time (friendly version).
-     *
-     * @return string
-     */
-    public function getEndTimeFriendlyAttribute()
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->end_time)->format('m/d H:i:s');
-    }
-
 }

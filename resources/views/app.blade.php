@@ -40,7 +40,7 @@
                     <li><a href="/">Home</a></li>
                     @if (!Auth::guest())
                     <li><a href="/events/create">Create event</a></li>
-                <li><a href="/events/hosted">My events</a></li>
+                <li><a href="/events?hosted=1">My events</a></li>
                     @endif
                 </ul>
  
@@ -67,6 +67,10 @@
  
     <!-- Scripts -->
     <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script src="/js/controllers/mainCtrl.js"></script> <!-- load our controller -->
+    <script src="/js/services/eventService.js"></script> <!-- load our service -->
+    <script src="/js/app.js"></script> <!-- load our application -->
     <script type="text/javascript" src="/js/moment/moment.js"></script>
     <script type="text/javascript" src="/js/transition.js"></script>
     <script type="text/javascript" src="/js/collapse.js"></script>
