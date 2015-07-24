@@ -19,8 +19,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-        return view('events.index', ['events' => $events, 'title' => 'All events']);
+        $events = Event::with('creator')->with('bookings')->orderBy('created_at', 'desc')->get();
+        return response()->json($events);
     }
 
     /**
@@ -30,8 +30,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $event = new Event;
-        return view('events.create', ['event' => $event]);
+        return view('events.create');
     }
 
     /**
@@ -63,8 +62,8 @@ class EventsController extends Controller
         // Saves it
         $event->save();
 
-        // Return all events view from controller
-        return redirect()->action('EventsController@index');
+        // Return JSON 
+        return response()->json(array('success' => true));
     }
 
     /**
@@ -122,8 +121,8 @@ class EventsController extends Controller
         // Saves it
         $event->save();
 
-        // Return all events view from controller
-        return redirect()->action('EventsController@index');
+        // Return current event in JSON
+        return response()->json($event);
     }
 
     /**
@@ -138,19 +137,7 @@ class EventsController extends Controller
         $event = Event::find($id);
         $event->delete();
 
-        return redirect()->action('EventsController@hosted');
+        // Return JSON
+        return response()->json(array('success' => true));
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function hosted()
-    {
-        $events = Event::myEvents()->get();
-
-        return view('events.index', ['events' => $events, 'title' => 'Hosted events']);
-    }
-
 }
