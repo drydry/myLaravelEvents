@@ -13,7 +13,7 @@ class StoreEventRequest extends Request
      */
     public function authorize()
     {
-    // No special authorization when saving an event.
+        // No special authorization when saving an event.
         return true;
     }
 

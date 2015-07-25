@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Event;
+use Auth;
 
 class UpdateEventRequest extends Request
 {
@@ -14,7 +16,8 @@ class UpdateEventRequest extends Request
     public function authorize()
     {
         // We must validate that the connected user is the owner of the event to update.
-        return true;
+        $eventId = $this->route('id');
+        return Event::where('id', $eventId)->where('host', Auth::id())->exists();
     }
 
     /**
