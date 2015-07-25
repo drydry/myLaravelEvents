@@ -9,9 +9,11 @@ use App\Http\Controllers\Controller;
 use Auth;
 
 use App\Event;
+use App\Http\Requests\StoreEventRequest;
 
 class EventsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -46,17 +48,8 @@ class EventsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        // Event validation
-        $this->validate($request, [
-            'title' => 'required|min:1|max:255',
-            'start_time' => 'required|date|after:tomorrow',
-            'end_time' => 'required|date|after:start_time',
-            'description' => 'max:255',
-            'capacity' => 'integer',
-        ]);
-
         // Populates the event
         $event = new Event;
         $event->start_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('start_time'))));

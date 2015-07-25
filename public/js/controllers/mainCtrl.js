@@ -14,7 +14,7 @@ angular.module('mainCtrl', [])
        value1 : 1
      };
 
-    // Define if we display only hosted events
+    // Set the value for displaying all events
     $scope.hostedEvents = $scope.checkboxHostedModel.value0;
         
 
@@ -30,6 +30,7 @@ angular.module('mainCtrl', [])
         });
     }
 
+    // Display all events
     $scope.getEvents($scope.checkboxHostedModel.value0);
 
     // function to handle submitting the form

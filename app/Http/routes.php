@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(array('prefix' => 'api'), function(){
 		// Events
 		Route::get('events', 'EventsController@index');
-		Route::post('events/create', 'EventsController@store');
+		Route::post('events/store', 'EventsController@store');
 		Route::post('events/edit/{id}', 'EventsController@update');
 		Route::post('events/delete/{id}', 'EventsController@destroy');
 		// Booking
