@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 		// Events
 		Route::get('events', 'EventsController@index');
 		Route::post('events/store', 'EventsController@store');
-		Route::post('events/edit/{id}', 'EventsController@update');
+		Route::post('events/update/{id}', 'EventsController@update');
 		Route::post('events/delete/{id}', 'EventsController@destroy');
 		// Booking
 		Route::post('events/book/{id}', 'BookingsController@store');

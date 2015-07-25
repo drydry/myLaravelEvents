@@ -19,7 +19,7 @@
                         </div>
                     @endif
  
-                    <form class="form-horizontal" role="form" method="POST" action="/events/edit/<?php echo $event->id; ?>">
+                    <form class="form-horizontal" role="form" method="POST" action="/api/events/update/{{$event->id}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
  
                         <div class="form-group">

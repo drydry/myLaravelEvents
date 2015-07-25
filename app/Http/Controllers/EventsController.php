@@ -10,6 +10,7 @@ use Auth;
 
 use App\Event;
 use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 
 class EventsController extends Controller
 {
@@ -98,18 +99,9 @@ class EventsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEventRequest $request, $id)
     {
         $event = Event::find($id);
-
-        // Event validation
-        $this->validate($request, [
-            'title' => 'required|min:1|max:255',
-            'start_time' => 'required|date|after:tomorrow',
-            'end_time' => 'required|date|after:start_time',
-            'description' => 'max:255',
-            'capacity' => 'integer',
-        ]);
 
         // Populates the event
         $event->start_time = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $request->input('start_time'))));
@@ -123,7 +115,7 @@ class EventsController extends Controller
         $event->save();
 
         // Return current event in JSON
-        return response()->json($event);
+        return redirect()->action('EventsController@edit', ['event' => $event]);
     }
 
     /**
