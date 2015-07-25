@@ -17,9 +17,16 @@ class EventsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::with('creator')->with('bookings')->orderBy('created_at', 'desc')->get();
+        // Hosted events only
+        if($request->hosted == 1){
+            $events = Event::with('creator')->with('bookings')->myEvents()->orderBy('created_at', 'desc')->get();    
+        } else {
+        // All events (hosted+others)
+            $events = Event::with('creator')->with('bookings')->orderBy('created_at', 'desc')->get();    
+        }
+        
         return response()->json($events);
     }
 
@@ -57,6 +64,7 @@ class EventsController extends Controller
         $event->title = $request->input('title');
         $event->description = $request->input('description');
         $event->capacity = $request->input('capacity');
+        // The host is the current connected user
         $event->host = Auth::id();
 
         // Saves it
