@@ -8,10 +8,30 @@ angular.module('mainCtrl', [])
     // loading variable to show the spinning loading icon
     $scope.loading = true;
 
+    // Hosted checkbox values
+    $scope.checkboxHostedModel = {
+       value0 : 0,
+       value1 : 1
+     };
+
+    // Define if we display only hosted events
+    $scope.hostedEvents = $scope.checkboxHostedModel.value0;
+
+    $scope.toggleHosted = function(val) {
+        $scope.hostedEvents = val;
+        Event.get($scope.hostedEvents)
+        .success(function(data) {
+            $scope.events = data;
+            $scope.loading = false;
+        });
+    };
+
+        
+
     // get all the events first and bind it to the $scope.events object
     // use the function we created in our service
     // GET ALL EVENTS ==============
-    Event.get()
+    Event.get($scope.checkboxHostedModel.value0)
         .success(function(data) {
             $scope.events = data;
             $scope.loading = false;

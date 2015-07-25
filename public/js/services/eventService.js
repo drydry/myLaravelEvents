@@ -4,10 +4,14 @@ angular.module('eventService', [])
 
     return {
         // get all the events
-        get : function() {
-            return $http.get('/api/events');
+        get : function(hosted) {
+            if(hosted == 1){
+                return $http.get('/api/events?hosted=1');
+            } else {
+                return $http.get('/api/events');    
+            }
+            
         },
-
         // save an event (pass in event data)
         save : function(eventData) {
             return $http({
@@ -38,7 +42,6 @@ angular.module('eventService', [])
                 headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
             });
         },
-
         // destroy an event
         destroy : function(id) {
             return $http({

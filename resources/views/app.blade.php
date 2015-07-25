@@ -43,7 +43,6 @@
                     <li><a href="/events/create">Create event</a></li>
                     @endif
                 </ul>
- 
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="/auth/login">Login</a></li>

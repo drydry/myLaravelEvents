@@ -3,6 +3,8 @@
 @section('content')
  
 <div class="container-fluid" ng-app="eventApp" ng-controller="mainController">
+    Display only hosted events <!--<input type="checkbox" id="switchEventsList" name="hostedEvents" ng-click="toggle()" ngTrueValue="1" ngFalseValue="0"> -->
+    <input type="checkbox" ng-model="checkboxHostedModel.value1" ng-click="toggleHosted(checkboxHostedModel.value1)">
     <div class="row">
 
         <div class="cold-md-12 text-center">
@@ -46,7 +48,15 @@
             </div>
         </div>
     </div>
-
 </div>
- 
+@section('view.scripts')
+<script type="text/javascript">                             
+    $(function () {
+        /*$("[name='hostedEvents']").bootstrapSwitch();
+        $(".bootstrap-switch-id-switchEventsList").attr('ng-model', 'checkboxHostedModel.value1');
+        $(".bootstrap-switch-id-switchEventsList").attr('ng-click', 'toggleHosted(checkboxHostedModel.value1)');
+        */
+    });
+</script>
+@endsection 
 @endsection
