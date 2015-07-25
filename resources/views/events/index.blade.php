@@ -4,7 +4,7 @@
  
 <div class="container-fluid" ng-app="eventApp" ng-controller="mainController">
     Display only hosted events <!--<input type="checkbox" id="switchEventsList" name="hostedEvents" ng-click="toggle()" ngTrueValue="1" ngFalseValue="0"> -->
-    <input type="checkbox" ng-model="checkboxHostedModel.value1" ng-click="toggleHosted(checkboxHostedModel.value1)">
+    <input type="checkbox" ng-model="checkboxHostedModel.value1" ng-click="getEvents(checkboxHostedModel.value1)">
     <div class="row">
 
         <div class="cold-md-12 text-center">

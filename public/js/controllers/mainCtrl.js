@@ -16,26 +16,21 @@ angular.module('mainCtrl', [])
 
     // Define if we display only hosted events
     $scope.hostedEvents = $scope.checkboxHostedModel.value0;
-
-    $scope.toggleHosted = function(val) {
-        $scope.hostedEvents = val;
-        Event.get($scope.hostedEvents)
-        .success(function(data) {
-            $scope.events = data;
-            $scope.loading = false;
-        });
-    };
-
         
 
     // get all the events first and bind it to the $scope.events object
     // use the function we created in our service
     // GET ALL EVENTS ==============
-    Event.get($scope.checkboxHostedModel.value0)
+    $scope.getEvents = function(hosted) {
+        $scope.loading = true;
+        Event.get(hosted)
         .success(function(data) {
             $scope.events = data;
             $scope.loading = false;
         });
+    }
+
+    $scope.getEvents($scope.checkboxHostedModel.value0);
 
     // function to handle submitting the form
     // SAVE AN EVENT ================
