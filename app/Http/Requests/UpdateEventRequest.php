@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Http\JsonResponse;
 use App\Event;
 use Auth;
 
@@ -34,5 +35,10 @@ class UpdateEventRequest extends Request
             'description' => 'max:255',
             'capacity' => 'integer',
         ];
+    }
+
+    public function forbiddenResponse()
+    {
+        return new JsonResponse('You can\'t update this event!', 403);
     }
 }
