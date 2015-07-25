@@ -1,4 +1,4 @@
-# myLaravelEvents (Laravel 5.1 + AngularJS v1.4.3)
+# myLaravelEvents (Laravel & AngularJS)
 
 myLaravelEvents is a website allowing users to share events and participate.
 The back-end is based on RESTFUL api calls + MySQL database and the front-end on AngularJS:
