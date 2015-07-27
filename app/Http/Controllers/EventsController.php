@@ -22,15 +22,28 @@ class EventsController extends Controller
      */
     public function index(Request $request)
     {
+        //1. SCOPES
+        
         // Hosted events only
         if($request->hosted == 1){
-            $events = Event::with('creator')->with('bookings')->myEvents()->orderBy('created_at', 'desc')->get();    
+            $events = Event::myEvents()->orderBy('created_at', 'desc');    
         } else {
         // All events (hosted+others)
-            $events = Event::with('creator')->with('bookings')->orderBy('created_at', 'desc')->get();    
+            $events = Event::orderBy('created_at', 'desc');
         }
+
+        //2. RELATIONSHIPS
         
-        return response()->json($events);
+        // include bookings
+        if($request->bookings == 1){
+            $events = $events->with('bookings'); 
+        }
+        // include creator details
+        if($request->creator == 1){
+            $events = $events->with('creator'); 
+        }
+
+        return response()->json($events->get());
     }
 
     /**

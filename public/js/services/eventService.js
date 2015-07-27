@@ -6,9 +6,9 @@ angular.module('eventService', [])
         // get all the events
         get : function(hosted) {
             if(hosted == 1){
-                return $http.get('/api/events?hosted=1');
+                return $http.get('/api/events?hosted=1&bookings=1&creator=1');
             } else {
-                return $http.get('/api/events');    
+                return $http.get('/api/events?bookings=1&creator=1');    
             }
             
         },
