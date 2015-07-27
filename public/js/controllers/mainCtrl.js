@@ -72,6 +72,10 @@ angular.module('mainCtrl', [])
                         $scope.loading = false;
                     });
 
+            })
+            .error(function(data, status, headers, config){
+                $scope.loading = false;
+                alert(data);
             });
     };
 

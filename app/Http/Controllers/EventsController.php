@@ -11,6 +11,7 @@ use Auth;
 use App\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Http\Requests\DeleteEventRequest;
 
 class EventsController extends Controller
 {
@@ -137,7 +138,7 @@ class EventsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(DeleteEventRequest $request, $id)
     {
         // Event validation
         $event = Event::find($id);

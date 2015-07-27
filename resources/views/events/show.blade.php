@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-        	<form class="form-horizontal" role="form" method="POST" action="/events/delete/<?php echo $event->id ?>">
+        	<form class="form-horizontal" role="form" method="POST" action="/events/delete/{{$event->id}}">
         		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	            <div class="panel panel-default">
 	                <div class="panel-heading">Event details</div>
