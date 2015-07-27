@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 
 use App\Booking;
+use App\Http\Requests\BookEventRequest;
 
 class BookingsController extends Controller
 {
@@ -37,7 +38,7 @@ class BookingsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request, $id)
+    public function store(BookEventRequest $request, $id)
     {
         
         /*
