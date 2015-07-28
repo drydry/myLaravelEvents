@@ -15,6 +15,6 @@ Concerning the APIs:
 There is a validation system, based on the server-side, with Laravel:
   - different 'Request' classes define validation rules and authorize an API call, so the model stays clean and correct
   - errors are showed in forms and in some cases with a simple javascript alert (when the error response comes from Angular controller)
-  - validation rules are simple right now but some are missing yet. 
+  - validation rules are not finalized yet. 
 
 No client-side validation to keep the web-app clean of endless javascript.
