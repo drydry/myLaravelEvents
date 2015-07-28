@@ -17,4 +17,12 @@ There is a validation system, based on the server-side, with Laravel:
   - errors are showed in forms and in some cases with a simple javascript alert (when the error response comes from Angular controller)
   - validation rules are not finalized yet. 
 
+Validation rules on booking:
+  - event must exist
+  - event time must be in the future
+  - a creator cannot book his event
+  - a user cannot book an event where the maximum capacity is reached
+  - a user cannot book the same event twice
+  - a user cannot book an event where timeslots are in conflicts (two events in the same time).  
+
 No client-side validation to keep the web-app clean of endless javascript.
