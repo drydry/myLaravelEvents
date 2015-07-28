@@ -59,9 +59,17 @@ class BookEventRequest extends Request
                 $validator->errors()->add('event.sameTimeBooking', 'You can\'t book this event because one event you booked is at the same time.');   
             }
 
+            // Does the event is not already finished/has begun?
+            if( !$this->checkEventDateNotDue()){
+                $validator->errors()->add('event.dateDue', 'You can\'t book this event because it\'s already begun or is terminated.');   
+            }
+
+            // Does the event has not reached max capacity?
+            if( !$this->checkEventNotFull()){
+                $validator->errors()->add('event.capacityReached', 'You can\'t book this event because its maximum capacity is reached.');   
+            }
 
         });
-
 
         return $validator;
     }
@@ -117,5 +125,40 @@ class BookEventRequest extends Request
             }
         }
         return true;
+    }
+
+    /**
+     * Checks if the event to book is not already finished.
+     *
+     * @return boolean (true if control is OK, false otherwise)
+     */
+    private function checkEventDateNotDue(){
+        $event = Event::find($this->id);
+        $now = Carbon::now();
+
+        if( is_null($event) ){
+            return false;   
+        } else {
+            $startTime = Carbon::createFromFormat('Y-m-d H:i:s', $event->start_time);
+            return $startTime->gt($now);
+        }
+    }
+
+    /**
+     * Checks if the event to book is not full of capacity.
+     *
+     * @return boolean (true if control is OK, false otherwise)
+     */
+    private function checkEventNotFull(){
+        $event = Event::find($this->id);
+
+        if( is_null($event) ){
+            return false;   
+        } else {
+            $bookings = Booking::where('event', $this->id);
+            // returns true if the number of bookings must be inferior to the event capacity OR if the event has not capacity defined. 
+            return (count($bookings) < $event->capacity) || ($event->capacity == 0);
+        }
+
     }
 }
