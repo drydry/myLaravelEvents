@@ -113,7 +113,7 @@ class EventsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(UpdateEventRequest $request, $id)
+    public function update(UpdateEventRequest $Request, $id)
     {
         $event = Event::find($id);
 

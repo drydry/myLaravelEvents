@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use App\Event;
 use App\Booking;
 use Auth;
+use Carbon\Carbon;
 
 class BookEventRequest extends Request
 {
@@ -17,13 +18,7 @@ class BookEventRequest extends Request
      */
     public function authorize()
     {
-        // Look for the event to book
-        $event = Event::find($this->id);
-
-        // Look for bookings for the sane event as the current user
-        $bookings = Booking::where('event', $this->id)->where('booker', Auth::id())->get();
-
-        return $event && count($bookings) == 0;
+        return true;
     }
 
     /**
@@ -39,8 +34,88 @@ class BookEventRequest extends Request
         ];
     }
 
-    public function forbiddenResponse()
-    {
-        return new JsonResponse('You can\'t book this event because it does not exist or you already booked it.', 403);
+    /**
+     * Override validator and adds specific error messages if the validation fails.
+     *
+     * @return $validator
+     */
+    public function getValidatorInstance() {
+        $validator = parent::getValidatorInstance();
+
+        $validator->after(function() use ($validator) {
+            
+            // Does the booker is not the creator?
+            if( !$this->checkEventNotBookedByCreator()){
+                $validator->errors()->add('event.bookedCreator', 'You can\'t book this event because since you are the owner.');   
+            }
+
+            // Does the event is not already booked by this user?
+            if( !$this->checkEventNotAlreadyBookedByUser()){
+                $validator->errors()->add('event.alreadyBooked', 'You already have booked this event.');
+            }
+
+            // Does the event is not at the same time as other events already booked by this user?
+            if( !$this->checkEventNotAtSameTime()){
+                $validator->errors()->add('event.sameTimeBooking', 'You can\'t book this event because one event you booked is at the same time.');   
+            }
+
+
+        });
+
+
+        return $validator;
+    }
+
+    /**
+     * Checks if the event is not booked by its creator.
+     *
+     * @return boolean (true if control is OK, false otherwise)
+     */
+    private function checkEventNotBookedByCreator(){
+        $event = Event::find($this->id);
+
+        return($event->host != Auth::id());
+    }
+
+    /**
+     * Checks if the event is not already booked by the current user.
+     *
+     * @return boolean (true if control is OK, false otherwise)
+     */
+    private function checkEventNotAlreadyBookedByUser(){
+        return count(Booking::where('event', $this->id)->where('booker', Auth::id())->get()) == 0;
+    }
+
+
+    /**
+     * Checks if the event to book is not at the same time as other booked events.
+     *
+     * @return boolean (true if control is OK, false otherwise)
+     */
+    private function checkEventNotAtSameTime(){
+        $bookings = Booking::where('booker', Auth::id())->get();
+        $eventToBook = Event::find($this->id);
+
+        // Check all booked events
+        foreach ($bookings as $booking) {
+            //dd($booking->event);
+            $event = Event::find($booking->event);
+
+            if( !is_null($event)){
+                // Event to book time properties
+                $eventToBookStartTime = Carbon::createFromFormat('Y-m-d H:i:s', $eventToBook->start_time);
+                $eventToBookEndTime = Carbon::createFromFormat('Y-m-d H:i:s', $eventToBook->end_time);
+
+                // Event booked time properties
+                $eventStartTime = Carbon::createFromFormat('Y-m-d H:i:s', $event->start_time);
+                $eventEndTime = Carbon::createFromFormat('Y-m-d H:i:s', $event->end_time);
+
+                // If the event to book start time OR end time is between start time/end time of an event that is already booked, error!
+                if( ( $eventToBookStartTime->between($eventStartTime, $eventEndTime) || $eventToBookEndTime->between($eventStartTime, $eventEndTime) ) ){
+                    return false;
+                }   
+            }
+        }
+        return true;
     }
 }
