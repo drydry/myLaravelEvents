@@ -39,13 +39,11 @@ class BookingsController extends Controller
      * @return Response
      */
     public function store(BookEventRequest $request, $id)
-    {
-        
+    {        
         /*
         // Event validation
         $this->validate($request, [
             'event' => 'required|exists:events',
-            'booker' => 'required|exists:users',
         ]);
         */
 

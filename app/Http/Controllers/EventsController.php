@@ -78,7 +78,7 @@ class EventsController extends Controller
         // Saves it
         $event->save();
 
-        // Return JSON 
+        // Return JSON
         return response()->json(array('success' => true));
     }
 
