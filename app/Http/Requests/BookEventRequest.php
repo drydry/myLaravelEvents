@@ -28,10 +28,7 @@ class BookEventRequest extends Request
      */
     public function rules()
     {
-        return [
-            'id' => 'required,exists:events,unique:bookings,event',
-            'booker' => 'required,exists:users,unique:bookings,booker',
-        ];
+        return array();
     }
 
     /**
@@ -46,32 +43,32 @@ class BookEventRequest extends Request
 
             // Does the event exist?
             if( !$this->checkEventExists()){
-                $validator->errors()->add('event.exists', 'This event does not longer exist.');
+                $validator->errors()->add('eventExists', 'This event does not longer exist.');
             } else {
 
                 // Does the booker is not the creator?
                 if( !$this->checkEventNotBookedByCreator()){
-                    $validator->errors()->add('event.bookedCreator', 'You can\'t book this event because since you are the owner.');   
+                    $validator->errors()->add('eventBookedCreator', 'You can\'t book this event because since you are the owner.');   
                 }
 
                 // Does the event is not already booked by this user?
                 if( !$this->checkEventNotAlreadyBookedByUser()){
-                    $validator->errors()->add('event.alreadyBooked', 'You already have booked this event.');
+                    $validator->errors()->add('eventAlreadyBooked', 'You already have booked this event.');
                 }
 
                 // Does the event is not at the same time as other events already booked by this user?
                 if( !$this->checkEventNotAtSameTime()){
-                    $validator->errors()->add('event.sameTimeBooking', 'You can\'t book this event because one event you booked is at the same time.');   
+                    $validator->errors()->add('eventSameTimeBooking', 'You can\'t book this event because one event you booked is at the same time.');   
                 }
 
                 // Does the event is not already finished/has begun?
                 if( !$this->checkEventDateNotDue()){
-                    $validator->errors()->add('event.dateDue', 'You can\'t book this event because it\'s already begun or is terminated.');   
+                    $validator->errors()->add('eventDateDue', 'You can\'t book this event because it\'s already begun or is terminated.');   
                 }
 
                 // Does the event has not reached max capacity?
                 if( !$this->checkEventNotFull()){
-                    $validator->errors()->add('event.capacityReached', 'You can\'t book this event because its maximum capacity is reached.');   
+                    $validator->errors()->add('eventCapacityReached', 'You can\'t book this event because its maximum capacity is reached.');   
                 }
             }
 
@@ -110,7 +107,6 @@ class BookEventRequest extends Request
     private function checkEventNotAlreadyBookedByUser(){
         return count(Booking::where('event', $this->id)->where('booker', Auth::id())->get()) == 0;
     }
-
 
     /**
      * Checks if the event to book is not at the same time as other booked events.

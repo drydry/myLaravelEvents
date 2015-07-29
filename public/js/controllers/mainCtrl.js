@@ -96,7 +96,8 @@ angular.module('mainCtrl', [])
             })
             .error(function(data, status, headers, config){
                 $scope.loading = false;
-                alert(data);
+                // Displays the first error message
+                alert(data[Object.keys(data)[0]][0]);
             });
     }
 });
