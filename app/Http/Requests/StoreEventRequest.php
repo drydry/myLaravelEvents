@@ -30,7 +30,7 @@ class StoreEventRequest extends Request
         return [
             'title' => 'required|min:1|max:255',
             'start_time' => 'required|date',
-            'end_time' => 'required|date|after:start_time',
+            'end_time' => 'required|date',
             'description' => 'max:255',
             'capacity' => 'integer',
         ];
