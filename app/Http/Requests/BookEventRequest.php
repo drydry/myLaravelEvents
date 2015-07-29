@@ -43,32 +43,32 @@ class BookEventRequest extends Request
 
             // Does the event exist?
             if( !$this->checkEventExists()){
-                $validator->errors()->add('eventExists', 'This event does not longer exist.');
+                $validator->errors()->add('event.Exists', 'This event does not longer exist.');
             } else {
 
                 // Does the booker is not the creator?
                 if( !$this->checkEventNotBookedByCreator()){
-                    $validator->errors()->add('eventBookedCreator', 'You can\'t book this event because since you are the owner.');   
+                    $validator->errors()->add('event.BookedCreator', 'You can\'t book this event because since you are the owner.');   
                 }
 
                 // Does the event is not already booked by this user?
                 if( !$this->checkEventNotAlreadyBookedByUser()){
-                    $validator->errors()->add('eventAlreadyBooked', 'You already have booked this event.');
+                    $validator->errors()->add('event.AlreadyBooked', 'You already have booked this event.');
                 }
 
                 // Does the event is not at the same time as other events already booked by this user?
                 if( !$this->checkEventNotAtSameTime()){
-                    $validator->errors()->add('eventSameTimeBooking', 'You can\'t book this event because one event you booked is at the same time.');   
+                    $validator->errors()->add('event.SameTimeBooking', 'You can\'t book this event because one event you booked is at the same time.');   
                 }
 
                 // Does the event is not already finished/has begun?
                 if( !$this->checkEventDateNotDue()){
-                    $validator->errors()->add('eventDateDue', 'You can\'t book this event because it\'s already begun or is terminated.');   
+                    $validator->errors()->add('event.DateDue', 'You can\'t book this event because it\'s already begun or is terminated.');   
                 }
 
                 // Does the event has not reached max capacity?
                 if( !$this->checkEventNotFull()){
-                    $validator->errors()->add('eventCapacityReached', 'You can\'t book this event because its maximum capacity is reached.');   
+                    $validator->errors()->add('event.CapacityReached', 'You can\'t book this event because its maximum capacity is reached.');   
                 }
             }
 

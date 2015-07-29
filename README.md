@@ -24,9 +24,9 @@ Validation rules on booking:
   - a user cannot book the same event twice
   - a user cannot book an event where timeslots are in conflicts (two events in the same time).
 
-Validation rules on event (not implemented yet):
+Validation rules when creating an event:
   - an event cannot be created at the same time as another event for the same host
-  - an event must be programmed for at least 15min
+  - an event must be programmed for at least 10min
   - an event cannot be created in the past and must be created at least 2 hours after now.
 
 No client-side validation to keep the web-app clean of endless javascript.
