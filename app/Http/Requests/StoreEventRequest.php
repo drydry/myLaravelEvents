@@ -73,7 +73,7 @@ class StoreEventRequest extends Request
      * @return boolean (true if control is OK, false otherwise)
      */
     private function checkDateTimesPresent(){
-        return $this->start_time != "" && $this->start_time != "";
+        return $this->start_time != "" && $this->end_time != "";
     }
 
     /**
