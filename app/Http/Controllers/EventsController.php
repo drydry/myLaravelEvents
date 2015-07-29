@@ -84,8 +84,8 @@ class EventsController extends Controller
         // Saves it
         $event->save();
 
-        // Return JSON
-        return response()->json(array('success' => true));
+        // Return show form
+        return redirect()->action('EventsController@show', [$event->id]);
     }
 
     /**
