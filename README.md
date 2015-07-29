@@ -4,7 +4,7 @@ myLaravelEvents is a web-app allowing users to manage and book events.
 
 The back-end is based on RESTFUL api calls, MySQL database and the front-end on AngularJS:
   - Authentication process (register, login, logout)
-  - List of events/hosted events only
+  - List of events/hosted events only, shows future events by default
   - Event management (creation, update, delete, booking).
 
 Concerning the APIs:

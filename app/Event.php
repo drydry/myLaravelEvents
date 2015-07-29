@@ -76,6 +76,16 @@ class Event extends Model {
     }
 
     /**
+     * Scope a query to only include events in the future.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFutureOnly($query)
+    {
+        return $query->where('start_time', '>' ,  Carbon::now());   
+    }
+
+    /**
      * Scope a query to only include events that don't belong to the current user.
      *
      * @return \Illuminate\Database\Eloquent\Builder

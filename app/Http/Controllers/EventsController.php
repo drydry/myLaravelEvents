@@ -27,10 +27,16 @@ class EventsController extends Controller
         
         // Hosted events only
         if($request->hosted == 1){
-            $events = Event::myEvents()->orderBy('created_at', 'desc');    
+            $events = Event::myEvents()->orderBy('start_time', 'asc');    
         } else {
         // All events (hosted+others)
-            $events = Event::orderBy('created_at', 'desc');
+            $events = Event::orderBy('start_time', 'asc');
+        }
+
+        // Display events in the future by default.
+        // If the 'future' url parameter is set to 0, we display past+future events.
+        if(is_null($request->future) || $request->future == 1){
+            $events = $events->futureOnly();   
         }
 
         //2. RELATIONSHIPS
