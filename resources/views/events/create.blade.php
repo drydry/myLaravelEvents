@@ -21,40 +21,40 @@
  
                     <form class="form-horizontal" role="form" method="POST" action="/api/events/store">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
- 
+                        <!-- Title -->
                         <div class="form-group">
                             <label class="col-md-4 control-label">Title</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                             </div>
                         </div>
-
+                        <!-- Description -->
                         <div class="form-group">
                             <label class="col-md-4 control-label">Description</label>
                             <div class="col-md-6">
                                 <textarea class="form-control" name="description">{{ old('description') }}</textarea>
                             </div>
                         </div>
-
+                        <!-- Capacity -->
                         <div class="form-group">
                             <label class="col-md-4 control-label">Capacity</label>
                             <div class="col-md-6">
                                 <input id="capacity" type="text" class="form-control" name="capacity" value="{{ old('capacity') }}">
                             </div>
                         </div>
- 
+                        <!-- Start time -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Start time</label>
+                            <label class="col-md-4 control-label">Start time</label>                            
                             <div class="col-md-6">
                                 <div class='input-group date' id='start_time_group'>
 				                    <input type='text' class="form-control" name="start_time" id="start_time" value="{{ old('start_time') }}"/>
 				                    <span class="input-group-addon">
 				                        <span class="glyphicon glyphicon-calendar"></span>
 				                    </span>
-				                </div>
+				                </div>                        
                             </div>
-
                         </div>
+                        <!-- End time -->
                         <div class="form-group">
                             <label class="col-md-4 control-label">End time</label>
                             <div class="col-md-6">
@@ -66,7 +66,7 @@
 				                </div>
                             </div>
                         </div>                     
- 
+                        <!-- Buttons -->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
@@ -83,8 +83,13 @@
 @section('view.scripts')
 <script type="text/javascript">                            	
     $(function () {
-        $('#start_time_group').datetimepicker(); 
-        $('#end_time_group').datetimepicker();
+        // Start date time is the current one + 2 hours
+        $('#start_time_group').datetimepicker({
+            minDate: moment().add(2, 'hours')
+        }); 
+        $('#end_time_group').datetimepicker({
+            minDate: moment().add(2, 'hours')
+        });
         // Linked pickers
         $("#start_time_group").on("dp.change", function (e) {
             $('#end_time_group').data("DateTimePicker").minDate(e.date);
@@ -92,7 +97,7 @@
         $("#end_time_group").on("dp.change", function (e) {
             $('#start_time_group').data("DateTimePicker").maxDate(e.date);
         });
-
+        // Capacity widget
         $("#capacity").TouchSpin({
             initval: 4
         });
