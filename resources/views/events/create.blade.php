@@ -96,6 +96,7 @@
         });
         $("#end_time_group").on("dp.change", function (e) {
             $('#start_time_group').data("DateTimePicker").maxDate(e.date);
+            
         });
         // Capacity widget
         $("#capacity").TouchSpin({

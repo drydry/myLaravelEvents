@@ -55,7 +55,7 @@ class StoreEventRequest extends Request
 
                 // Event duration is at least 10min
                 if( !$this->checkEventDuration()){
-                    $validator->errors()->add('event.duration', 'The duration must be at least 10min.');   
+                    $validator->errors()->add('event.duration', 'The duration must be at least 10 minutes and less than 12 hours.');   
                 }
                 
                 // Time slot available
@@ -77,7 +77,7 @@ class StoreEventRequest extends Request
     }
 
     /**
-     * Checks if the event duration is at least 10min.
+     * Checks if the event duration is at least 10min and at most 12 hours.
      *
      * @return boolean (true if control is OK, false otherwise)
      */
@@ -86,7 +86,7 @@ class StoreEventRequest extends Request
         $eventStartTime = Carbon::createFromFormat('m/d/Y h:i a', $this->start_time);
         $eventEndTime = Carbon::createFromFormat('m/d/Y h:i a', $this->end_time);
         // The difference must be at least 10minutes
-        return $eventStartTime->diffInMinutes($eventEndTime) >= 10;
+        return $eventStartTime->diffInMinutes($eventEndTime) >= 10 && $eventStartTime->diffInHours($eventEndTime) <= 12;
     }
 
     /**

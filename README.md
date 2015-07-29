@@ -26,7 +26,7 @@ Validation rules on booking:
 
 Validation rules when creating an event:
   - an event cannot be created at the same time as another event for the same host
-  - an event must be programmed for at least 10min
+  - an event must be programmed for at least 10 minutes and less than 12 hours
   - an event cannot be created in the past and must be created at least 2 hours after now.
 
 No client-side validation to keep the web-app clean of endless javascript.
