@@ -54,7 +54,7 @@ class Event extends Model {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->end_time)->format('m/d H:i:s');
     }
 
-	/** Relationships **/
+	/** RELATIONSHIPS **/
 	public function creator()
     {
         return $this->belongsTo('App\User', 'host');
@@ -65,33 +65,55 @@ class Event extends Model {
         return $this->hasMany('App\Booking', 'event', 'id');
     }
 
+    /** QUERY SCOPES **/
+
     /**
-     * Scope a query to only include events that belong to the current user.
+     * Scope a query to only include hosted events, based on the current connected user.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeMyEvents($query)
+    public function scopeHosted($query)
     {
         return $query->where('host', Auth::id());
     }
 
     /**
-     * Scope a query to only include events in the future.
+     * Scope a query to only include upcoming events.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFutureOnly($query)
+    public function scopeUpcoming($query)
     {
         return $query->where('start_time', '>' ,  Carbon::now());   
     }
 
     /**
-     * Scope a query to only include events that don't belong to the current user.
+     * Scope a query to only include events created by other users.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOtherEvents($query)
+    public function scopeBelongsToOthers($query)
     {
         return $query->where('host', '<>', Auth::id());
+    }
+
+    /**
+     * Scope a query to only include events that are not fully booked.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotFull($query)
+    {
+        return $query;
+    }
+
+    /**
+     * Scope a query to only include events that are not already booked by the current user.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotBooked($query)
+    {
+        return $query;
     }
 }

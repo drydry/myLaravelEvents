@@ -149,10 +149,9 @@ class BookEventRequest extends Request
     private function checkEventDateNotDue(){
         $event = Event::find($this->id);
         $now = Carbon::now();
-    
+         
         $startTime = Carbon::createFromFormat('Y-m-d H:i:s', $event->start_time);
         return $startTime->gt($now);
-    
     }
 
     /**
@@ -162,8 +161,8 @@ class BookEventRequest extends Request
      */
     private function checkEventNotFull(){
         $event = Event::find($this->id);
+        $bookings = Booking::where('event', $this->id)->get();
 
-        $bookings = Booking::where('event', $this->id);
         // returns true if the number of bookings must be inferior to the event capacity OR if the event has not capacity defined. 
         return (count($bookings) < $event->capacity) || ($event->capacity == 0);
     }

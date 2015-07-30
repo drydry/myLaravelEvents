@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::get('/home', function () {
+    return view('events.index');
 });
 
 // Authentication routes...
@@ -27,7 +27,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 // Authenticated routes...
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('/', function () {
+	Route::get('/events', function () {
 	    return view('events.index');
 	});
 

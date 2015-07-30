@@ -9,21 +9,22 @@ angular.module('mainCtrl', [])
     $scope.loading = true;
 
     // Hosted checkbox values
-    $scope.checkboxHostedModel = {
-       value0 : 0,
-       value1 : 1
+    $scope.eventsType = {
+       upcoming : 'upcoming',
+       booked : 'booked',
+       hosted : 'hosted'
      };
 
     // Set the value for displaying all events
-    $scope.hostedEvents = $scope.checkboxHostedModel.value0;
+    //$scope.hostedEvents = $scope.checkboxHostedModel.value0;
         
 
     // get all the events first and bind it to the $scope.events object
     // use the function we created in our service
     // GET ALL EVENTS ==============
-    $scope.getEvents = function(hosted) {
+    $scope.getEvents = function(eventType) {
         $scope.loading = true;
-        Event.get(hosted)
+        Event.get(eventType)
         .success(function(data) {
             $scope.events = data;
             $scope.loading = false;
@@ -31,7 +32,7 @@ angular.module('mainCtrl', [])
     }
 
     // Display all events
-    $scope.getEvents($scope.checkboxHostedModel.value0);
+    //$scope.getEvents($scope.checkboxHostedModel.value0);
 
     // function to handle submitting the form
     // SAVE AN EVENT ================

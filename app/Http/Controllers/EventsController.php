@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 use Auth;
 
 use App\Event;
@@ -23,32 +24,24 @@ class EventsController extends Controller
      */
     public function index(Request $request)
     {
-        //1. SCOPES
-        
-        // Hosted events only
-        if($request->hosted == 1){
-            $events = Event::myEvents()->orderBy('start_time', 'asc');    
-        } else {
-        // All events (hosted+others)
-            $events = Event::orderBy('start_time', 'asc');
+        // Enable query log
+        \DB::connection()->enableQueryLog();
+
+        // Upcoming available events
+        if( !is_null($request->available && $request->available ==1) ){
+            $events = Event::upcoming()->belongsToOthers()->notFull()->notBooked();
+        // Hosted events
+        } else if( !is_null($request->hosted && $request->hosted ==1) ){
+            $events = Event::upcoming()->hosted();
+        } else if( !is_null($request->booked && $request->booked ==1) ){
+            $events = Event::upcoming()->booked();
         }
 
-        // Display events in the future by default.
-        // If the 'future' url parameter is set to 0, we display past+future events.
-        if(is_null($request->future) || $request->future == 1){
-            $events = $events->futureOnly();   
-        }
+        // Order by start time for now by default
+        $events = $events->orderBy('start_time', 'asc');
 
-        //2. RELATIONSHIPS
-        
-        // include bookings
-        if($request->bookings == 1){
-            $events = $events->with('bookings'); 
-        }
-        // include creator details
-        if($request->creator == 1){
-            $events = $events->with('creator'); 
-        }
+        // some queries here
+        $queries = \DB::getQueryLog(); 
 
         return response()->json($events->get());
     }
