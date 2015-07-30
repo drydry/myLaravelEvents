@@ -40,6 +40,16 @@ class EventsController extends Controller
         // Order by start time for now by default
         $events = $events->orderBy('start_time', 'asc');
 
+
+        // include bookings
+        if($request->bookings == 1){
+            $events = $events->with('bookings'); 
+        }
+        // include creator details
+        if($request->creator == 1){
+            $events = $events->with('creator'); 
+        }
+
         // some queries here
         $queries = \DB::getQueryLog(); 
 

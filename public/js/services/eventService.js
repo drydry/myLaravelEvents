@@ -7,10 +7,10 @@ angular.module('eventService', [])
         get : function(eventType) {
 
             switch(eventType){
-                case 'upcoming': return $http.get('/api/events?available=1'); break;
-                case 'booked':   return $http.get('/api/events?booked=1'); break;
-                case 'hosted':   return $http.get('/api/events?hosted=1'); break;
-                //default:         return $http.get('/api/events?available=1'); break;
+                case 'upcoming': return $http.get('/api/events?available=1&bookings=1&creator=1'); break;
+                case 'booked':   return $http.get('/api/events?booked=1&bookings=1&creator=1'); break;
+                case 'hosted':   return $http.get('/api/events?hosted=1&bookings=1&creator=1'); break;
+                default:         return $http.get('/api/events?available=1&bookings=1&creator=1'); break;
             }
             
         },

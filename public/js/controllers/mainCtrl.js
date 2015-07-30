@@ -11,8 +11,8 @@ angular.module('mainCtrl', [])
     // Hosted checkbox values
     $scope.eventsType = {
        upcoming : 'upcoming',
-       booked : 'booked',
-       hosted : 'hosted'
+       booked :   'booked',
+       hosted :   'hosted'
      };
 
     // Set the value for displaying all events
@@ -31,8 +31,8 @@ angular.module('mainCtrl', [])
         });
     }
 
-    // Display all events
-    //$scope.getEvents($scope.checkboxHostedModel.value0);
+    // Display all upcoming events
+    $scope.getEvents($scope.eventsType.upcoming);
 
     // function to handle submitting the form
     // SAVE AN EVENT ================
