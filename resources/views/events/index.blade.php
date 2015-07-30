@@ -7,8 +7,8 @@
     <!--<input type="checkbox" ng-model="checkboxHostedModel.value1" ng-click="getEvents(checkboxHostedModel.value1)">-->
     <div class="md-col-12">
         <a class="btn btn-primary" href="#" ng-click="getEvents(eventsType.upcoming)">Upcoming events</a>
-        <a class="btn btn-primary" href="#" ng-click="getEvents(eventsTypebooked)">Booked events</a>
-        <a class="btn btn-primary" href="#" ng-click="getEvents(eventsTypehosted)">Hosted Events</a>
+        <a class="btn btn-primary" href="#" ng-click="getEvents(eventsType.booked)">Booked events</a>
+        <a class="btn btn-primary" href="#" ng-click="getEvents(eventsType.hosted)">Hosted Events</a>
     </div>
     <div class="row">
 

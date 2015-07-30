@@ -15,6 +15,8 @@ Route::get('/home', function () {
     return view('events.index');
 });
 
+Route::get('/', 'Auth\AuthController@getLogin');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -28,6 +30,10 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/events', function () {
+	    return view('events.index');
+	});
+
+	Route::get('/', function () {
 	    return view('events.index');
 	});
 
