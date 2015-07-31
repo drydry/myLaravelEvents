@@ -28,13 +28,13 @@ class EventsController extends Controller
         //\DB::connection()->enableQueryLog();
 
         // Upcoming available events
-        if( !is_null($request->available && $request->available ==1) ){
-            $events = Event::belongsToOthers()->notFull()->notBooked();
+        if( !is_null($request->available) && $request->available ==1 ){
+            $events = Event::belongsToOthers()->notBooked();
         // Hosted events
-        } else if( !is_null($request->hosted && $request->hosted ==1) ){
+        } else if( !is_null($request->hosted) && $request->hosted ==1 ){
             $events = Event::hosted();
         // Booked events
-        } else if( !is_null($request->booked && $request->booked ==1) ){
+        } else if( !is_null($request->booked) && $request->booked ==1 ){
             $events = Event::booked();
         }
 

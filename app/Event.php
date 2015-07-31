@@ -98,11 +98,11 @@ class Event extends Model {
     }
 
     /**
-     * Scope a query to only include events that are not fully booked.
+     * Scope a query to only include events that are not already booked by the current user.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeNotFull($query)
+    public function scopeNotBooked($query)
     {
         return $query->where( function($query){
             // Event with booking and not booked by current user
@@ -112,16 +112,12 @@ class Event extends Model {
             })->orwhere(function($query){
                 $query->where( 'events.capacity', '0')
                 ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event)');
-            });      
+            }); 
     }
 
-    /**
-     * Scope a query to only include events that are not already booked by the current user.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeNotBooked($query)
-    {
-        return $query;
+    public function scopeBooked($query){
+        return $query->whereHas('bookings', function ($query) {
+            $query->where('booker', Auth::id());
+        });
     }
 }
