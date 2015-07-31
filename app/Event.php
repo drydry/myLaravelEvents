@@ -104,7 +104,18 @@ class Event extends Model {
      */
     public function scopeNotFull($query)
     {
-        return $query;
+        return $query->where( function($query){
+            // Event with booking and nto booked by current user
+            $query->whereRaw('events.capacity > (select count(*) from bookings where bookings.event = events.id)')
+                ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event)');
+            // Event with no booking
+            })->orwhere(function($query){
+                $query->whereRaw( 'events.id not in (select id from bookings)' );
+            // Event with unlimited capacity
+            })->orwhere(function($query){
+                $query->where( 'events.capacity', '0')
+                ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event)');
+            });      
     }
 
     /**

@@ -29,16 +29,16 @@ class EventsController extends Controller
 
         // Upcoming available events
         if( !is_null($request->available && $request->available ==1) ){
-            $events = Event::upcoming()->belongsToOthers()->notFull()->notBooked();
+            $events = Event::belongsToOthers()->notFull()->notBooked();
         // Hosted events
         } else if( !is_null($request->hosted && $request->hosted ==1) ){
-            $events = Event::upcoming()->hosted();
+            $events = Event::hosted();
         } else if( !is_null($request->booked && $request->booked ==1) ){
-            $events = Event::upcoming()->booked();
+            $events = Event::booked();
         }
 
         // Order by start time for now by default
-        $events = $events->orderBy('start_time', 'asc');
+        $events = $events->upcoming()->orderBy('start_time', 'asc');
 
 
         // include bookings
@@ -50,8 +50,14 @@ class EventsController extends Controller
             $events = $events->with('creator'); 
         }
 
+        // To remove
+        //$events = $events->get();
+
         // some queries here
-        $queries = \DB::getQueryLog(); 
+        $queries = \DB::getQueryLog();
+
+
+        //dd($queries); 
 
         return response()->json($events->get());
     }
