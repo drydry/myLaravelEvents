@@ -13,7 +13,7 @@ There are 3 main 'tabs' (for now it's only buttons) :
   - Booked events: events you have booked
   - Hosted events: events you host.
 
-Only upcoming events are displayed and bookable.
+Only future events are displayed and bookable.
 
 ![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list.png)
 
