@@ -36,6 +36,8 @@ class EventsController extends Controller
         // Booked events
         } else if( !is_null($request->booked) && $request->booked ==1 ){
             $events = Event::booked();
+        } else {
+            $events = Event::upcoming();
         }
 
         // Order by start time for now by default
