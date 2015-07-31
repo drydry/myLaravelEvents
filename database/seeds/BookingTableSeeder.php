@@ -15,17 +15,45 @@ class BookingTableSeeder extends Seeder
         	array(
         		array(
         			'event' => 35,
-		            'booker' => 3),
+		            'booker' => 1
+		        ),
+        		array(
+        			'event' => 36,
+		            'booker' => 1
+		        ),
         		array(
         			'event' => 37,
-		            'booker' => 1),
+		            'booker' => 5
+		        ),
         		array(
         			'event' => 37,
-		            'booker' => 5),
+		            'booker' => 7
+		        ),
         		array(
         			'event' => 37,
-		            'booker' => 7),
-        		)
+		            'booker' => 2
+		        ),
+        		array(
+        			'event' => 37,
+		            'booker' => 3
+		        ),
+        		array(
+        			'event' => 38,
+		            'booker' => 1
+		        ),
+        		array(
+        			'event' => 38,
+		            'booker' => 6
+		        ),
+        		array(
+        			'event' => 38,
+		            'booker' => 5
+		        ),
+        		array(
+        			'event' => 38,
+		            'booker' => 3
+		        )
+		    )
        	);
     }
 }

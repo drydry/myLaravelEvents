@@ -25,7 +25,7 @@ class EventsController extends Controller
     public function index(Request $request)
     {
         // Enable query log
-        \DB::connection()->enableQueryLog();
+        //\DB::connection()->enableQueryLog();
 
         // Upcoming available events
         if( !is_null($request->available && $request->available ==1) ){
@@ -33,6 +33,7 @@ class EventsController extends Controller
         // Hosted events
         } else if( !is_null($request->hosted && $request->hosted ==1) ){
             $events = Event::hosted();
+        // Booked events
         } else if( !is_null($request->booked && $request->booked ==1) ){
             $events = Event::booked();
         }
@@ -52,11 +53,8 @@ class EventsController extends Controller
 
         // To remove
         //$events = $events->get();
-
         // some queries here
-        $queries = \DB::getQueryLog();
-
-
+        //$queries = \DB::getQueryLog();
         //dd($queries); 
 
         return response()->json($events->get());
