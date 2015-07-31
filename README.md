@@ -11,7 +11,7 @@ The design is not beautiful but functional, I will arrange it soon.
 There are 3 main 'tabs' (for now it's only buttons) :
   - Upcoming events: events you can book, which means not full and events you don't have already booked. 
   - Booked events: events you have booked
-  - Hosted events: events you have hosted
+  - Hosted events: events you host.
 
 Only upcoming events are displayed and bookable.
 
