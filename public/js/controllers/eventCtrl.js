@@ -70,12 +70,26 @@ angular.module('eventCtrl', [])
                 Event.get()
                     .success(function(getData) {
                         $scope.events = getData;
-                        $scope.loading = false;
+                        $scope.loading = false;                        
                     });
+                $.notify({
+                    // options
+                    message: 'Event successfully created!' 
+                },{
+                    // settings
+                    type: 'success'
+                });
 
             })
             .error(function(data) {
                 console.log(data);
+                $.notify({
+                    // options
+                    message: data 
+                },{
+                    // settings
+                    type: 'danger'
+                });
             });
     };
 
@@ -93,12 +107,25 @@ angular.module('eventCtrl', [])
                     .success(function(getData) {
                         $scope.events = getData;
                         $scope.loading = false;
+                        $.notify({
+                            // options
+                            message: 'Event successfully deleted!' 
+                        },{
+                            // settings
+                            type: 'success'
+                        });
                     });
 
             })
             .error(function(data, status, headers, config){
                 $scope.loading = false;
-                alert(data);
+                $.notify({
+                    // options
+                    message: data 
+                },{
+                    // settings
+                    type: 'danger'
+                });
             });
     };
 
@@ -116,11 +143,24 @@ angular.module('eventCtrl', [])
                         $scope.events = getData;
                         $scope.loading = false;
                     });
+                $.notify({
+                    // options
+                    message: 'Event successfully booked!' 
+                },{
+                    // settings
+                    type: 'success'
+                });
             })
             .error(function(data, status, headers, config){
                 $scope.loading = false;
                 // Displays the first error message
-                alert(data[Object.keys(data)[0]][0]);
+                $.notify({
+                    // options
+                    message: data[Object.keys(data)[0]][0] 
+                },{
+                    // settings
+                    type: 'danger'
+                });
             });
     }
 
@@ -138,11 +178,24 @@ angular.module('eventCtrl', [])
                         $scope.events = getData;
                         $scope.loading = false;
                     });
+                $.notify({
+                    // options
+                    message: 'Event successfuly unbooked!' 
+                },{
+                    // settings
+                    type: 'success'
+                });
             })
             .error(function(data, status, headers, config){
                 $scope.loading = false;
                 // Displays the first error message
-                alert(data[Object.keys(data)[0]][0]);
+                $.notify({
+                    // options
+                    message: data[Object.keys(data)[0]][0] 
+                },{
+                    // settings
+                    type: 'success'
+                });
             });
     };
 });
