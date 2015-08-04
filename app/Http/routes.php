@@ -37,10 +37,14 @@ Route::group(['middleware' => 'auth'], function () {
 	    return view('events.index');
 	});
 
-	// Events routes...
+	// Events
 	Route::get('events/create', 'EventsController@create');
 	Route::get('events/show/{id}', 'EventsController@show');
 	Route::get('events/edit/{id}', 'EventsController@edit');
+	// Event types
+	Route::get('eventsTypes/create', 'EventTypesController@create');
+	Route::get('eventsTypes/show/{id}', 'EventTypesController@show');
+	Route::get('eventsTypes/edit/{id}', 'EventTypesController@edit');
 	
 	// Specific routes for posting
 	Route::group(array('prefix' => 'api'), function(){
@@ -52,5 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
 		// Booking
 		Route::post('events/book/{id}', 'BookingsController@store');
 		Route::post('events/unbook/{id}', 'BookingsController@destroy');
+		// Event types
+		Route::get('eventTypes', 'EventTypesController@index');
+		Route::post('eventTypes/store', 'EventTypesController@store');
 	});
 });

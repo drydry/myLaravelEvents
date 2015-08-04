@@ -41,6 +41,12 @@
                     @if (!Auth::guest())
                     <li><a href="/events">Events</a></li>
                     <li><a href="/events/create">Create event</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Event Types<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/eventsTypes/create">Create</a></li>
+                        </ul>
+                    </li>
                     @endif
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
