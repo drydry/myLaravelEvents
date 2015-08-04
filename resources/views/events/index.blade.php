@@ -3,16 +3,17 @@
 @section('content')
  
 <div class="container-fluid" ng-app="eventApp" ng-controller="mainController">
-    <div class="md-col-12 text-center">
-        <a class="btn btn-primary" href="#" ng-click="getEvents(eventsType.upcoming)">Upcoming events</a>
-        <a class="btn btn-primary" href="#" ng-click="getEvents(eventsType.booked)">Booked events</a>
-        <a class="btn btn-primary" href="#" ng-click="getEvents(eventsType.hosted)">Hosted Events</a>
-    </div>
     <div class="row">
 
         <div class="cold-md-12 text-center">
             <h1>Upcoming Events</h1>
         </div>
+
+        <ul class="nav nav-tabs">
+          <li role="events" class="active"><a href="#" ng-click="getEvents(eventsType.upcoming)">Upcoming events</a></li>
+          <li role="events"><a href="#" ng-click="getEvents(eventsType.booked)">Booked events</a></li>
+          <li role="events"><a href="#" ng-click="getEvents(eventsType.hosted)">Hosted events</a></li>
+        </ul>
 
         <div ng-hide="loading" ng-repeat="event in events">
             <!-- Event panel -->

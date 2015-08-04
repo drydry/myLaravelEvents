@@ -24,6 +24,7 @@ angular.module('mainCtrl', [])
     // GET ALL EVENTS ==============
     $scope.getEvents = function(eventType) {
         $scope.loading = true;
+
         Event.get(eventType)
         .success(function(data) {
             $scope.events = data;
