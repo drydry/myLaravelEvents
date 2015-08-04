@@ -31,7 +31,8 @@ Set the capacity to 0 to allow unlimited books.
 The back-end is based on RESTFUL api calls, MySQL database and the front-end on AngularJS:
   - Authentication process (register, login, logout)
   - List of events, categorized by type
-  - Event management (creation, update, delete, booking).
+  - Event management (creation, update, delete, booking)
+  - Validation process on server-side, with notifications on errors and on actions (book, unbook, delete).
 
 Concerning the APIs:
   - they are protected from the 'public', you need to be logged-in to use them
@@ -39,7 +40,7 @@ Concerning the APIs:
 
 There is a validation system, based on the server-side:
   - different 'Request' classes define validation rules and authorize an API call, so the model stays clean and correct
-  - errors are showed in forms and in some cases with a simple javascript alert (when the error response comes from Angular controller). 
+  - errors are showed in forms, handled either by Laravel (errors written in a div) or by Angular(errors displayed as a notification). 
 
 ## Validation rules
 
