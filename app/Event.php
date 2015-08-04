@@ -65,6 +65,11 @@ class Event extends Model {
         return $this->hasMany('App\Booking', 'event', 'id');
     }
 
+    public function eventType()
+    {
+        return $this->belongsTo('App\EventType', 'type');   
+    }
+
     /** QUERY SCOPES **/
 
     /**
