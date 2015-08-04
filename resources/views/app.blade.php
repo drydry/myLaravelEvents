@@ -75,7 +75,6 @@
     <script type="text/javascript" src="/js/collapse.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
-    <script type="text/javascript" src="/js/bootstrap-switch.min.js"></script>
     <script type="text/javascript" src="/js/jquery.bootstrap-touchspin.min.js"></script>
      @yield('view.scripts')
 </body>

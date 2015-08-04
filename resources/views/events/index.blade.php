@@ -58,10 +58,6 @@
 @section('view.scripts')
 <script type="text/javascript">                             
     $(function () {
-        /*$("[name='hostedEvents']").bootstrapSwitch();
-        $(".bootstrap-switch-id-switchEventsList").attr('ng-model', 'checkboxHostedModel.value1');
-        $(".bootstrap-switch-id-switchEventsList").attr('ng-click', 'toggleHosted(checkboxHostedModel.value1)');
-        */
     });
 </script>
 @endsection 
