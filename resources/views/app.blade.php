@@ -67,7 +67,7 @@
     <!-- Scripts -->
     <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/js/angular.min.js"></script>
-    <script src="/js/controllers/mainCtrl.js"></script> <!-- load our controller -->
+    <script src="/js/controllers/eventCtrl.js"></script> <!-- load events controller -->
     <script src="/js/services/eventService.js"></script> <!-- load our service -->
     <script src="/js/app.js"></script> <!-- load our application -->
     <script type="text/javascript" src="/js/moment/moment.js"></script>

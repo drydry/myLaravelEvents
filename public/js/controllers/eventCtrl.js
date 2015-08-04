@@ -1,7 +1,7 @@
-angular.module('mainCtrl', [])
+angular.module('eventCtrl', [])
 
 // inject the Event service into our controller
-.controller('mainController', function($scope, $http, Event) {
+.controller('eventController', function($scope, $http, Event) {
     // object to hold all the data for the new event form
     $scope.eventData = {};
 
@@ -15,9 +15,30 @@ angular.module('mainCtrl', [])
        hosted :   'hosted'
      };
 
-    // Set the value for displaying all events
-    //$scope.hostedEvents = $scope.checkboxHostedModel.value0;
-        
+    // event tabs
+    $scope.tabs = [{
+            title: 'Upcoming events',
+            type: $scope.eventsType.upcoming
+        }, {
+            title: 'Booked events',
+            type: $scope.eventsType.booked
+        }, {
+            title: 'Hosted events',
+            type: $scope.eventsType.hosted
+    }];
+
+    $scope.currentTab = $scope.eventsType.upcoming;
+    $scope.currentTitle = $scope.tabs[0].title;
+
+    $scope.onClickTab = function (tab) {
+        $scope.currentTab = tab.type;
+        $scope.currentTitle = tab.title;
+        $scope.getEvents(tab.type);
+    }
+    
+    $scope.isActiveTab = function(tabType) {
+        return tabType == $scope.currentTab;
+    }    
 
     // get all the events first and bind it to the $scope.events object
     // use the function we created in our service
