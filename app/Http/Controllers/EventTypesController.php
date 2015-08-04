@@ -76,7 +76,8 @@ class EventTypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $eventType = EventType::find($id);
+        return view('event-types.edit', ['eventType' => $eventType]);
     }
 
     /**
@@ -88,7 +89,18 @@ class EventTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $eventType = EventType::find($id);
+
+        // Populates the event
+        $eventType->title = $request->input('title');
+        $eventType->description = $request->input('description');
+        $eventType->capacity = $request->input('capacity');
+        
+        // Saves it
+        $eventType->save();
+
+        // Return current event in JSON
+        return redirect()->action('EventTypesController@edit', ['eventType' => $eventType]);
     }
 
     /**
@@ -99,6 +111,10 @@ class EventTypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $eventType = EventType::find($id);
+        $eventType->delete();
+
+        // Return JSON
+        return response()->json(array('success' => true));
     }
 }

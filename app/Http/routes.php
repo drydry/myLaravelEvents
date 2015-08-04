@@ -63,5 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
 		// Event types
 		Route::get('eventTypes', 'EventTypesController@index');
 		Route::post('eventTypes/store', 'EventTypesController@store');
+		Route::post('eventTypes/delete/{id}', 'EventTypesController@destroy');
+		Route::post('eventTypes/update/{id}', 'EventTypesController@update');
 	});
 });
