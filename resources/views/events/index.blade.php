@@ -15,7 +15,7 @@
                     </a>
                 </li>
             </ul>
-
+            <br/>
             <div ng-hide="loading" ng-repeat="event in events">
                 <!-- Event panel -->
                 <div class="col-md-4">
