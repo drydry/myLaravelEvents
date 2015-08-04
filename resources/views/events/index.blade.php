@@ -3,7 +3,7 @@
 @section('content')
  
 <div class="container-fluid" ng-app="eventApp" ng-controller="mainController">
-    <div class="row">
+        <div class="row">
 
         <div class="cold-md-12 text-center">
             <h1>Upcoming Events</h1>

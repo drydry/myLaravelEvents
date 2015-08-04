@@ -85,10 +85,12 @@
     $(function () {
         // Start date time is the current one + 2 hours
         $('#start_time_group').datetimepicker({
+            stepping: 15,
             minDate: moment().add(2, 'hours')
         }); 
         $('#end_time_group').datetimepicker({
-            minDate: moment().add(2, 'hours')
+            stepping: 15,
+            minDate: moment().add(3, 'hours')
         });
         // Linked pickers
         $("#start_time_group").on("dp.change", function (e) {
