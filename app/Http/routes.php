@@ -33,6 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
 	    return view('events.index');
 	});
 
+	Route::get('/eventsTypes', function () {
+	    return view('event-types.index');
+	});
+
 	Route::get('/', function () {
 	    return view('events.index');
 	});

@@ -19,7 +19,7 @@ class EventTypesController extends Controller
      */
     public function index()
     {
-        $eventTypes = EventType::where('owner', Auth::id());
+        $eventTypes = EventType::where('owner', Auth::id())->with('creator');
 
         return response()->json($eventTypes->get()); 
     }

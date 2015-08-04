@@ -44,6 +44,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Event Types<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="/eventsTypes/">My events types</a></li>
                             <li><a href="/eventsTypes/create">Create</a></li>
                         </ul>
                     </li>
@@ -74,7 +75,9 @@
     <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/js/angular.min.js"></script>
     <script src="/js/controllers/eventCtrl.js"></script> <!-- load events controller -->
+    <script src="/js/controllers/eventTypesCtrl.js"></script> <!-- load events controller -->
     <script src="/js/services/eventService.js"></script> <!-- load our service -->
+    <script src="/js/services/eventTypeService.js"></script> <!-- load our service -->
     <script src="/js/app.js"></script> <!-- load our application -->
     <script type="text/javascript" src="/js/moment/moment.js"></script>
     <script src="/js/plugins.js"></script> <!-- load plugins -->
