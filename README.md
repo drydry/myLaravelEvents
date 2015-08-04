@@ -15,7 +15,9 @@ There are 3 main 'tabs' (for now it's only buttons) :
 
 Only future events are displayed and bookable.
 
-![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list.png)
+![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list-upcoming.png)
+![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list-booked.png)
+![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list-hosted.png)
 
 ### Event create form
 
