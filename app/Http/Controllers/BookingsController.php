@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\UnbookEventRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 
@@ -40,13 +41,6 @@ class BookingsController extends Controller
      */
     public function store(BookEventRequest $request, $id)
     {        
-        /*
-        // Event validation
-        $this->validate($request, [
-            'event' => 'required|exists:events',
-        ]);
-        */
-
         // Populates the booking
         $booking = new Booking;
         $booking->event = $id;
@@ -98,8 +92,12 @@ class BookingsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(UnbookEventRequest $request, $id)
+    {   
+        $booking = Booking::where('event', $id)->where('booker', Auth::id())->first();
+        $booking->delete();
+
+        // Return JSON
+        return response()->json(array('success' => true));
     }
 }

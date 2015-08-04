@@ -51,5 +51,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('events/delete/{id}', 'EventsController@destroy');
 		// Booking
 		Route::post('events/book/{id}', 'BookingsController@store');
+		Route::post('events/unbook/{id}', 'BookingsController@destroy');
 	});
 });

@@ -107,11 +107,11 @@ class Event extends Model {
         return $query->where( function($query){
             // Event with booking and not booked by current user
             $query->whereRaw('events.capacity > (select count(*) from bookings where bookings.event = events.id)')
-                ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event)');
+                ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event and bookings.deleted_at is null)');
             // Event with unlimited capacity
             })->orwhere(function($query){
                 $query->where( 'events.capacity', '0')
-                ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event)');
+                ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event and bookings.deleted_at is null)');
             }); 
     }
 

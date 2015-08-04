@@ -54,10 +54,10 @@ class EventsController extends Controller
         }
 
         // To remove
-        //$events = $events->get();
+        // $events = $events->get();
         // some queries here
-        //$queries = \DB::getQueryLog();
-        //dd($queries); 
+        // $queries = \DB::getQueryLog();
+        // dd($queries); 
 
         return response()->json($events->get());
     }

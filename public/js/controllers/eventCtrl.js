@@ -89,7 +89,7 @@ angular.module('eventCtrl', [])
             .success(function(data) {
 
                 // if successful, we'll need to refresh the event list
-                Event.get()
+                Event.get($scope.eventsType.hosted)
                     .success(function(getData) {
                         $scope.events = getData;
                         $scope.loading = false;
@@ -111,7 +111,7 @@ angular.module('eventCtrl', [])
         Event.book(id)
             .success(function(data){
                 // if successful, we display all the events
-                Event.get()
+                Event.get($scope.eventsType.upcoming)
                     .success(function(getData){
                         $scope.events = getData;
                         $scope.loading = false;
@@ -123,4 +123,26 @@ angular.module('eventCtrl', [])
                 alert(data[Object.keys(data)[0]][0]);
             });
     }
+
+    // function to handle unbooking an event
+    // BOOK AN EVENT ====================================================
+    $scope.unbookEvent = function(id) {
+        $scope.loading = true;
+        
+        // use the function we created in our service
+        Event.unbook(id)
+            .success(function(data){
+                // if successful, we display all the events
+                Event.get($scope.eventsType.booked)
+                    .success(function(getData){
+                        $scope.events = getData;
+                        $scope.loading = false;
+                    });
+            })
+            .error(function(data, status, headers, config){
+                $scope.loading = false;
+                // Displays the first error message
+                alert(data[Object.keys(data)[0]][0]);
+            });
+    };
 });

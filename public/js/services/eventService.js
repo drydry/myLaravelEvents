@@ -44,6 +44,15 @@ angular.module('eventService', [])
                 headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
             });
         },
+        // unbook an event
+        unbook: function(id) {
+            return $http({
+                method: 'POST',
+                withCredentials: true,
+                url: '/api/events/unbook/' + id,
+                headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+            });
+        },
         // destroy an event
         destroy : function(id) {
             return $http({

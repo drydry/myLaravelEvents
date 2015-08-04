@@ -43,9 +43,11 @@
                                     <!-- Show event details -->
                                     <a class="btn btn-primary" href="/events/show/<% event.id %>">View details</a>
                                     <!-- Delete event -->
-                                    <a class="btn btn-danger" href="#" ng-click="deleteEvent(event.id)" class="text-muted">Delete</a>
+                                    <a ng-show="<% isActiveTab(eventsType.hosted) %>" class="btn btn-danger" href="#" ng-click="deleteEvent(event.id)" class="text-muted">Delete</a>
+                                    <!-- Unbook event -->
+                                    <a ng-show="<% isActiveTab(eventsType.booked) %>" class="btn btn-warning" href="#" ng-click="unbookEvent(event.id)" class="text-muted">Unbook</a>
                                     <!-- Book event -->
-                                    <a class="btn btn-success" href="#" ng-click="bookEvent(event.id)" class="text-muted">Book!</a>
+                                    <a ng-show="<% isActiveTab(eventsType.upcoming) %>" class="btn btn-success" href="#" ng-click="bookEvent(event.id)" class="text-muted">Book!</a>
                                 </div>
                             </div>
                         </div>
