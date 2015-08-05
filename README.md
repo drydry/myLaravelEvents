@@ -8,7 +8,7 @@ The design is not beautiful but functional, I will arrange it soon.
 
 ### Events list
 
-There are 3 main 'tabs' (for now it's only buttons) :
+There are 3 main tabs:
   - Upcoming events: events you can book, which means not full and events you don't have already booked. 
   - Booked events: events you have booked
   - Hosted events: events you host, possibility to view bookings and kick users.
