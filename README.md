@@ -65,7 +65,7 @@ There is a validation system, based on the server-side:
   - a user cannot book the same event twice
   - a user cannot book an event where timeslots are in conflicts (two events in the same time).
 
-### Common validation rules"
+### Common validation rules:
   - you can't edit/update/delete an entity (Event, EventType, Booking) that doesn't belong to you. For example, the user #1 can't edit an event created by the user #2, and so on.
 
 The validation is handled by the server and no specific javascript was added to perform front-validation.
