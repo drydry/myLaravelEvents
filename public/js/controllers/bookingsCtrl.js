@@ -38,7 +38,7 @@ angular.module('bookingsCtrl', [])
             .success(function(data) {
 
                 // if successful, we'll need to refresh the events types list
-                Booking.get()
+                Booking.get($scope.eventId)
                     .success(function(getData) {
                         $scope.bookings = getData;
                         $scope.loading = false;
