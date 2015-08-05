@@ -62,7 +62,7 @@ class Event extends Model {
 
     public function bookings()
     {
-        return $this->hasMany('App\Booking', 'event', 'id');
+        return $this->hasMany('App\Booking', 'event', 'id')->where('kicked', '0');
     }
 
     public function eventType()
@@ -121,13 +121,24 @@ class Event extends Model {
     }
 
     /**
-     * Scope a query to only include events where the current user participates and has not been kicked.
+     * Scope a query to only include events where the current user participates.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeBooked($query){
         return $query->whereHas('bookings', function ($query) {
-            $query->where('booker', Auth::id())->where('kicked', '0');
+            $query->where('booker', Auth::id());
         });
+    }
+
+    /**
+     * Scope a query to only include events where the bookings are not in 'kicked' status.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotKicked($query){
+        return $query->whereHas('bookings', function ($query) {
+            $query->where('kicked', '0');
+        });   
     }
 }

@@ -32,13 +32,13 @@ class EventsController extends Controller
 
         // Upcoming available events
         if( !is_null($request->available) && $request->available ==1 ){
-            $events = Event::belongsToOthers()->notBooked();
+            $events = Event::belongsToOthers()->notBooked()->notKicked();
         // Hosted events
         } else if( !is_null($request->hosted) && $request->hosted ==1 ){
             $events = Event::hosted();
         // Booked events
         } else if( !is_null($request->booked) && $request->booked ==1 ){
-            $events = Event::booked();
+            $events = Event::booked()->notKicked();
         } else {
             $events = Event::upcoming();
         }
@@ -49,7 +49,7 @@ class EventsController extends Controller
 
         // include bookings
         if($request->bookings == 1){
-            $events = $events->with('bookings'); 
+            $events = $events->with('bookings');
         }
         // include creator details
         if($request->creator == 1){
