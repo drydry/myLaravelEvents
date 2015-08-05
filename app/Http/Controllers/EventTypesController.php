@@ -54,7 +54,7 @@ class EventTypesController extends Controller
         $eventType->save();
 
         // Return show form
-        return redirect()->action('EventTypesController@index');
+        return view('event-types.index');
     }
 
     /**
