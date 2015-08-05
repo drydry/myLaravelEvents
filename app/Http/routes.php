@@ -29,6 +29,10 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 // Authenticated routes...
 Route::group(['middleware' => 'auth'], function () {
 
+	Route::get('/', function () {
+	    return view('events.index');
+	});
+
 	Route::get('/events', function () {
 	    return view('events.index');
 	});
@@ -37,8 +41,9 @@ Route::group(['middleware' => 'auth'], function () {
 	    return view('event-types.index');
 	});
 
-	Route::get('/', function () {
-	    return view('events.index');
+	// Bookings
+	Route::get('/events/{id}/bookings', function () {
+		return view('bookings.index');
 	});
 
 	// Events
@@ -49,8 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('eventsTypes/create', 'EventTypesController@create');
 	Route::get('eventsTypes/show/{id}', 'EventTypesController@show');
 	Route::get('eventsTypes/edit/{id}', 'EventTypesController@edit');
-	// Bookings
-	Route::get('events/{id}/bookings', 'BookingsController@index');
+	
 	
 	// Specific routes for posting
 	Route::group(array('prefix' => 'api'), function(){

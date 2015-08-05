@@ -21,7 +21,7 @@ class BookingsController extends Controller
      */
     public function index(IndexBookingRequest $request, $id)
     {
-        return Booking::where('event', $id)->where('kicked', 0)->get();
+        return response()->json(Booking::where('event', $id)->where('kicked', 0)->get());
     }
 
     /**
