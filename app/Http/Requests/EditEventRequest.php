@@ -4,10 +4,10 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Http\JsonResponse;
-use App\Event;
 use Auth;
+use App\Event;
 
-class UpdateEventRequest extends Request
+class EditEventRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,8 +16,7 @@ class UpdateEventRequest extends Request
      */
     public function authorize()
     {
-        // We must validate that the connected user is the owner of the event to update.
-        $event = Event::find($this->route('id'));
+        $event = Event::find($this->id);
         return !is_null($event) && $event->host == Auth::id();
     }
 
@@ -29,16 +28,12 @@ class UpdateEventRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|min:1|max:255',
-            'start_time' => 'required|date|after:tomorrow',
-            'end_time' => 'required|date|after:start_time',
-            'description' => 'max:255',
-            'capacity' => 'integer',
+            //
         ];
     }
 
     public function forbiddenResponse()
     {
-        return new JsonResponse('You can\'t update this event!', 403);
+        return new JsonResponse('You can\'t edit this event!', 403);
     }
 }

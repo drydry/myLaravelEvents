@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\StoreEventTypeRequest;
+use App\Http\Requests\EditEventTypeRequest;
+use App\Http\Requests\UpdateEventTypeRequest;
+use App\Http\Requests\DeleteEventTypeRequest;
 use App\Http\Controllers\Controller;
 use App\EventType;
 use Auth;
@@ -74,7 +77,7 @@ class EventTypesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(EditEventTypeRequest $request, $id)
     {
         $eventType = EventType::find($id);
         return view('event-types.edit', ['eventType' => $eventType]);
@@ -87,7 +90,7 @@ class EventTypesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEventTypeRequest $request, $id)
     {
         $eventType = EventType::find($id);
 
@@ -109,7 +112,7 @@ class EventTypesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(DeleteEventTypeRequest $request, $id)
     {
         $eventType = EventType::find($id);
         $eventType->delete();

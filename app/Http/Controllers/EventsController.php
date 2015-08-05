@@ -13,6 +13,7 @@ use App\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\DeleteEventRequest;
+use App\Http\Requests\EditEventRequest;
 
 class EventsController extends Controller
 {
@@ -115,7 +116,7 @@ class EventsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(EditEventRequest $request, $id)
     {
         $event = Event::find($id);
         return view('events.edit', ['event' => $event]);
