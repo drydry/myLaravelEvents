@@ -26,6 +26,14 @@ Set the capacity to 0 to allow unlimited books.
 
 ![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/event-create.png)
 
+### Event types
+
+This section of the app allow you to create templates for events.
+Each template is defined by a title, description and a capacity.
+Click on "Create event" to open a new event create form with data already filled.
+
+![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/event-types-list.png)
+
 
 ## General description
 The back-end is based on RESTFUL api calls, MySQL database and the front-end on AngularJS:
@@ -56,5 +64,8 @@ There is a validation system, based on the server-side:
   - a user cannot book an event where the maximum capacity is reached
   - a user cannot book the same event twice
   - a user cannot book an event where timeslots are in conflicts (two events in the same time).
+
+### Common validation rules"
+  - you can't edit/update/delete an entity (Event, EventType, Booking) that doesn't belong to you. For example, the user #1 can't edit an event created by the user #2, and so on.
 
 The validation is handled by the server and no specific javascript was added to perform front-validation.
