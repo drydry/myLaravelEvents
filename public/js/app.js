@@ -9,7 +9,7 @@ var eventTypeApp = angular.module('eventTypeApp', ['eventTypesCtrl', 'eventTypeS
     $interpolateProvider.endSymbol('%>');
 }); 
 
-var bookingApp = angular.module('bookingApp', ['bookingsCtrl', 'bookingService'], function($interpolateProvider, $locationProvider){
+var bookingApp = angular.module('bookingApp', ['angularMoment', 'bookingsCtrl', 'bookingService'], function($interpolateProvider, $locationProvider){
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
     $locationProvider.html5Mode({

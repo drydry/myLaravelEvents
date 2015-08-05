@@ -16,7 +16,7 @@
                             <div class="form-group clearfix">
                                 <!-- Description -->
                                 <label class="col-md-4">Booked on</label>
-                                <div class="col-md-8"><% booking.updated_at %></div>
+                                <div class="col-md-8"><%  booking.updated_at | amDateFormat:'YYYY/DD/MM @ hh:mm' %></div>
                             </div>
                             <!-- Buttons -->
                             <div class="form-group">
