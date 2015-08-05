@@ -6,18 +6,22 @@ myLaravelEvents is a web-app allowing users to manage and book events.
 The design is not beautiful but functional, I will arrange it soon.
 
 
-### Event list
+### Events list
 
 There are 3 main 'tabs' (for now it's only buttons) :
   - Upcoming events: events you can book, which means not full and events you don't have already booked. 
   - Booked events: events you have booked
-  - Hosted events: events you host.
+  - Hosted events: events you host, possibility to view bookings and kick users.
 
 Only future events are displayed and bookable.
 
 ![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list-upcoming.png)
 ![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list-booked.png)
 ![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/events-list-hosted.png)
+
+### Bookings list
+
+![alt tag](https://raw.githubusercontent.com/drydry/myLaravelEvents/master/storage/app/screenshots/bookings-list.png)
 
 ### Event create form
 
@@ -63,7 +67,8 @@ There is a validation system, based on the server-side:
   - a creator cannot book his event
   - a user cannot book an event where the maximum capacity is reached
   - a user cannot book the same event twice
-  - a user cannot book an event where timeslots are in conflicts (two events in the same time).
+  - a user cannot book an event where timeslots are in conflicts (two events in the same time)
+  - a user cannot book an event if he was kicked from it.
 
 ### Common validation rules:
   - you can't edit/update/delete an entity (Event, EventType, Booking) that doesn't belong to you. For example, the user #1 can't edit an event created by the user #2, and so on.
