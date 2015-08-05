@@ -15,6 +15,7 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\DeleteEventRequest;
 use App\Http\Requests\EditEventRequest;
+use App\Http\Requests\CreateEventRequest;
 
 class EventsController extends Controller
 {
@@ -69,11 +70,10 @@ class EventsController extends Controller
      *
      * @return Response
      */
-    public function create($id = null)
+    public function create(CreateEventRequest $request, $id = null)
     {
         $eventType = is_null($id) ? new EventType : EventType::find($id);
-
-        return view('events.create')->with('eventType', new EventType);
+        return view('events.create')->with('eventType', $eventType);
     }
 
     /**
