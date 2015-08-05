@@ -28,7 +28,7 @@ Set the capacity to 0 to allow unlimited books.
 
 ### Event types
 
-This section of the app allow you to create templates for events.
+This section of the app allows you to create templates for events.
 Each template is defined by a title, description and a capacity.
 Click on "Create event" to open a new event create form with data already filled.
 
