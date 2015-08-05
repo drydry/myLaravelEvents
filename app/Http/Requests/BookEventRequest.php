@@ -51,6 +51,11 @@ class BookEventRequest extends Request
                     $validator->errors()->add('event.BookedCreator', 'You can\'t book this event because since you are the owner.');   
                 }
 
+                // Does the user has not been kicked from this event?
+                if( !$this->checkNotKickedFromEvent() ){
+                    $validator->errors()->add('event.Kicked', 'You can\'t book this event because you have been kicked from it by its host.');
+                }
+
                 // Does the event is not already booked by this user?
                 if( !$this->checkEventNotAlreadyBookedByUser()){
                     $validator->errors()->add('event.AlreadyBooked', 'You already have booked this event.');
@@ -105,7 +110,7 @@ class BookEventRequest extends Request
      * @return boolean (true if control is OK, false otherwise)
      */
     private function checkEventNotAlreadyBookedByUser(){
-        return count(Booking::where('event', $this->id)->where('booker', Auth::id())->get()) == 0;
+        return count(Booking::where('event', $this->id)->where('booker', Auth::id())->where('kicked', '0')->get()) == 0;
     }
 
     /**
@@ -114,7 +119,7 @@ class BookEventRequest extends Request
      * @return boolean (true if control is OK, false otherwise)
      */
     private function checkEventNotAtSameTime(){
-        $bookings = Booking::where('booker', Auth::id())->get();
+        $bookings = Booking::where('booker', Auth::id())->where('kicked', '0')->get();
         $eventToBook = Event::find($this->id);
 
         // Check all booked events
@@ -165,5 +170,17 @@ class BookEventRequest extends Request
 
         // returns true if the number of bookings must be inferior to the event capacity OR if the event has not capacity defined. 
         return (count($bookings) < $event->capacity) || ($event->capacity == 0);
+    }
+
+    /**
+     * Checks if the user has not been kicked from the event.
+     *
+     * @return boolean (true if control is OK, false otherwise)
+     */
+    private function checkNotKickedFromEvent(){
+        $event = Event::find($this->id);
+        $booking = Booking::where('event', $this->id)->where('booker', Auth::id())->where('kicked', '1')->get();
+        // returns true if the current user has not been kicked from this event 
+        return (count($booking) == 0);
     }
 }

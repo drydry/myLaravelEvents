@@ -117,12 +117,17 @@ class Event extends Model {
             })->orwhere(function($query){
                 $query->where( 'events.capacity', '0')
                 ->whereRaw( Auth::id() . ' not in (select booker from bookings where events.id = bookings.event and bookings.deleted_at is null)');
-            }); 
+            });
     }
 
+    /**
+     * Scope a query to only include events where the current user participates and has not been kicked.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeBooked($query){
         return $query->whereHas('bookings', function ($query) {
-            $query->where('booker', Auth::id());
+            $query->where('booker', Auth::id())->where('kicked', '0');
         });
     }
 }
