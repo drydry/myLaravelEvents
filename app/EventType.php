@@ -36,9 +36,4 @@ class EventType extends Model
  	*/
 	protected $guarded = array('id');
 
-	/** RELATIONSHIPS **/
-	public function creator()
-    {
-        return $this->belongsTo('App\User', 'owner');
-    }
 }

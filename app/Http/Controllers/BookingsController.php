@@ -22,7 +22,7 @@ class BookingsController extends Controller
      */
     public function index(IndexBookingRequest $request, $id)
     {
-        return response()->json(Booking::where('event', $id)->where('kicked', 0)->get());
+        return response()->json(Booking::where('event', $id)->where('kicked', 0)->with('user')->with('eventData')->get());
     }
 
     /**
@@ -103,7 +103,20 @@ class BookingsController extends Controller
         return response()->json(array('success' => true));
     }
 
-    public function kick(KickUserBookingRequest $request, $id, $booker){
+    /**
+     * Set the booking as kicked in the storage.
+     *
+     * @param  KickUserBookingRequest  $request
+     * @param  int  $id booking id
+     * @return Response
+     */
+    public function kick(KickUserBookingRequest $request, $id){
+        $booking = Booking::find($id);
+        // Set the kicked tag to 1
+        $booking->kicked = 1;
+        $booking->save();
 
+        // Return JSON
+        return response()->json(array('booking' => $booking));   
     }
 }

@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('events/{id}/bookings', 'BookingsController@index');
 		Route::post('events/book/{id}', 'BookingsController@store');
 		Route::post('events/unbook/{id}', 'BookingsController@destroy');
-		Route::post('bookings/{id}/kick/{booker}', 'BookingsController@kick');
+		Route::post('bookings/kick/{id}', 'BookingsController@kick');
 		// Event types
 		Route::get('eventTypes', 'EventTypesController@index');
 		Route::post('eventTypes/store', 'EventTypesController@store');

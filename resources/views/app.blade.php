@@ -76,8 +76,10 @@
     <script type="text/javascript" src="/js/angular.min.js"></script>
     <script src="/js/controllers/eventCtrl.js"></script> <!-- load events controller -->
     <script src="/js/controllers/eventTypesCtrl.js"></script> <!-- load events controller -->
+    <script src="/js/controllers/bookingsCtrl.js"></script> <!-- load bookings controller -->
     <script src="/js/services/eventService.js"></script> <!-- load our service -->
     <script src="/js/services/eventTypeService.js"></script> <!-- load our service -->
+    <script src="/js/services/bookingService.js"></script> <!-- load our service -->
     <script src="/js/app.js"></script> <!-- load our application -->
     <script type="text/javascript" src="/js/moment/moment.js"></script>
     <script src="/js/plugins.js"></script> <!-- load plugins -->

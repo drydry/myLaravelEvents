@@ -37,5 +37,22 @@ class Booking extends Model
  	*/
 	protected $guarded = array('id');
 
+    /** RELATIONSHIPS **/
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'booker');
+    }
+
+    /** RELATIONSHIPS **/
+    public function creator()
+    {
+        return $this->belongsTo('App\User', 'owner');
+    }
+    
+    public function eventData()
+    {
+        return $this->belongsTo('App\Event', 'event');
+    }
+
 
 }

@@ -1,6 +1,6 @@
 angular.module('eventTypesCtrl', [])
 
-// inject the Event service into our controller
+// inject the Event type service into our controller
 .controller('eventTypesController', function($scope, $http, EventType) {
     // object to hold all the data for the new event form
     $scope.eventTypesData = {};
