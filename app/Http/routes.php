@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	// Events
-	Route::get('events/create', 'EventsController@create');
+	Route::get('events/create/{id?}', 'EventsController@create'); 
 	Route::get('events/show/{id}', 'EventsController@show');
 	Route::get('events/edit/{id}', 'EventsController@edit');
 	// Event types

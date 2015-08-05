@@ -10,6 +10,7 @@ use DB;
 use Auth;
 
 use App\Event;
+use App\EventType;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\DeleteEventRequest;
@@ -68,9 +69,11 @@ class EventsController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create($id = null)
     {
-        return view('events.create');
+        $eventType = is_null($id) ? new EventType : EventType::find($id);
+
+        return view('events.create')->with('eventType', new EventType);
     }
 
     /**

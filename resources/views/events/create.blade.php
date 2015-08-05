@@ -25,21 +25,21 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Title</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                <input type="text" class="form-control" name="title" value="{{ $eventType->title }}">
                             </div>
                         </div>
                         <!-- Description -->
                         <div class="form-group">
                             <label class="col-md-4 control-label">Description</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" name="description">{{ old('description') }}</textarea>
+                                <textarea class="form-control" name="description">{{ $eventType->description }}</textarea>
                             </div>
                         </div>
                         <!-- Capacity -->
                         <div class="form-group">
                             <label class="col-md-4 control-label">Capacity</label>
                             <div class="col-md-6">
-                                <input id="capacity" type="text" class="form-control" name="capacity" value="{{ old('capacity') }}">
+                                <input id="capacity" type="text" class="form-control" name="capacity" value="{{ $eventType->capacity }}">
                             </div>
                         </div>
                         <!-- Start time -->

@@ -26,6 +26,8 @@
                             <!-- Buttons -->
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
+                                    <!-- Create event from -->
+                                    <a class="btn btn-primary" href="/events/create/<% eventType.id %>">Create event</a>
                                     <!-- Edit event type -->
                                     <a class="btn btn-primary" href="/eventsTypes/edit/<% eventType.id %>">Edit</a>
                                     <!-- Delete event type -->
