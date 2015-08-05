@@ -48,6 +48,8 @@
                                     <a ng-show="<% isActiveTab(eventsType.booked) %>" class="btn btn-warning" href="#" ng-click="unbookEvent(event.id)" class="text-muted">Unbook</a>
                                     <!-- Book event -->
                                     <a ng-show="<% isActiveTab(eventsType.upcoming) %>" class="btn btn-success" href="#" ng-click="bookEvent(event.id)" class="text-muted">Book!</a>
+                                    <!-- Book event -->
+                                    <a ng-show="<% isActiveTab(eventsType.hosted) %>" class="btn btn-success" href="/events/<% event.id %>/bookings" class="text-muted">View bookings</a>
                                 </div>
                             </div>
                         </div>

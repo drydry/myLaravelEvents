@@ -26,7 +26,8 @@ class Booking extends Model
     */
     protected $fillable = [
     	'booker',
-    	'note'
+    	'note',
+        'kicked'
     	];
 
     /**

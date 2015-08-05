@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\UnbookEventRequest;
+use App\Http\Requests\IndexBookingRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 
@@ -18,9 +19,9 @@ class BookingsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(IndexBookingRequest $request, $id)
     {
-        //
+        return Booking::where('event', $id)->where('kicked', 0)->get();
     }
 
     /**

@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('eventsTypes/create', 'EventTypesController@create');
 	Route::get('eventsTypes/show/{id}', 'EventTypesController@show');
 	Route::get('eventsTypes/edit/{id}', 'EventTypesController@edit');
+	// Bookings
+	Route::get('events/{id}/bookings', 'BookingsController@index');
 	
 	// Specific routes for posting
 	Route::group(array('prefix' => 'api'), function(){

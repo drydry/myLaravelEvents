@@ -3,11 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use Illuminate\Http\JsonResponse;
 use App\Event;
 use Auth;
+use Illuminate\Http\JsonResponse;
 
-class DeleteEventRequest extends Request
+class IndexBookingRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class DeleteEventRequest extends Request
      */
     public function authorize()
     {
-        // We must validate that the connected user is the owner of the event to delete.
+        // We can return bookings only if the user is the event host.
         $event = Event::find($this->route('id'));
         return !is_null($event) && $event->host == Auth::id();
     }
@@ -35,6 +35,6 @@ class DeleteEventRequest extends Request
 
     public function forbiddenResponse()
     {
-        return new JsonResponse('You can\'t delete this event because you are not the owner or this event doesn\'t exist.', 403);
+        return new JsonResponse('You can\'t view bookings on this event because you are not the owner or this event doesn\'t exist.', 403);
     }
 }
