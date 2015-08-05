@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\UnbookEventRequest;
 use App\Http\Requests\IndexBookingRequest;
+use App\Http\Requests\KickUserBookingRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 
@@ -100,5 +101,9 @@ class BookingsController extends Controller
 
         // Return JSON
         return response()->json(array('success' => true));
+    }
+
+    public function kick(KickUserBookingRequest $request, $id, $booker){
+
     }
 }
