@@ -5,7 +5,8 @@
 <div class="container-fluid" ng-app="bookingApp" ng-controller="bookingsController">
         <div class="row">
             <div class="cold-md-12 text-center">
-                <h1><% bookings[0].event_data.title %></h1>
+                <h1 ng-if="bookings.length > 0"><% bookings[0].event_data.title %></h1>
+                <h1 ng-if="bookings.length ==0">No bookings</h1>
             </div>
             <div ng-hide="loading" ng-repeat="booking in bookings">
                 <!-- Event panel -->
